@@ -1,0 +1,58 @@
+{
+    "name": "Figure Eight",
+    "description": "<p>Figure Eight is the essential Human-in-the-Loop AI platform for data science &amp; machine learning teams. Our software platform trains, tests, and tunes machine learning models to make AI work in the real world. We support a wide range of data types&ndash;text, image, audio, and video&ndash;and use cases, including autonomous vehicles, consumer product identification, natural language processing, search relevance, intelligent chatbots, and more.<\/p>",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28351-www-figure-eight-com.jpg",
+    "tags": [
+        "api provider",
+        "api service provider",
+        "have api",
+        "machine learning"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/figure-eight\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Figure Eight",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28351-www-figure-eight-com.jpg",
+            "humanURL": "https:\/\/www.figure-eight.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/figure-eight-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Email",
+            "url": "help@figure-eight.com"
+        },
+        {
+            "type": "Email",
+            "url": "notices@figure-eight.com"
+        },
+        {
+            "type": "Email",
+            "url": "dpo@figure-eight.com"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/www.figure-eight.com\/plans\/"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/FigureEightInc"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.figure-eight.com"
+        }
+    ]
+}
