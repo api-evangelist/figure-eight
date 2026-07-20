@@ -1,0 +1,19 @@
+generated: '2026-07-19'
+method: searched
+source: https://success.figure-eight.com/hc/en-us/articles/201856219-CrowdFlower-API-at-a-Glance
+note: >-
+  The published OpenAPI declares no components.securitySchemes; the auth model is
+  documented in the API-at-a-Glance guide. Authentication is API-key based: every
+  request must carry a `key` query parameter set to the account API key (found in
+  the platform UI under Account > API). All traffic is over HTTPS.
+summary:
+  types: [apiKey]
+  api_key_in: [query]
+  oauth2_flows: []
+schemes:
+- name: apiKey
+  type: apiKey
+  in: query
+  parameter: key
+  description: Account API key passed as the `key` query parameter on every request.
+  sources: [docs]
