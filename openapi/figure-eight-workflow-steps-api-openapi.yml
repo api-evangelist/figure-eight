@@ -1,0 +1,288 @@
+openapi: 3.0.0
+info:
+  title: Appen Platform Account Info Workflow Steps API
+  version: 1.0.0
+  description: "# Introduction\nHello, and welcome to Appen, the leading data annotation platform for Machine Learning. Our API enables developers to build applications that can programmatically create, edit, and launch Appen jobs, download results, and more! \n\nAppen uses a RESTful API that accepts data requests as URL-encoded key-value pairs. Responses are returned in JSON and authentication is key-based.\n\nBefore integrating with the API, we highly recommend you first build and run a job using our [graphical user interface](https://client.appen.com/sessions/new). Once you have run a job successfully and are satisfied with the results, you can automate the process using the Appen API.\n\n# Authentication\nYou will need to supply your Appen API key to access the API. To find your API key:\n1. Click the Account button located in the bottom corner of the Global Navigation bar on the left side of any page.\n![Appen Authentication](/assets/img/authentication1.png \"Appen Authentication\")\n2. Click the API tab and find your key listed under the Your API Key section. \n![Appen API](/assets/img/authentication2.png \"Appen API key\")\n\nFor requests listed below, the API Key will be listed as `{api_key}`. \n\nThe API key needs to be included in the header for every request: \n```\n  headers: { \n\n   \"AUTHORIZATION\" => \"Token token={api_key}\" \n\n  } \n```\n\nYou may also see other variables, such as `{job_id}` for operations pertaining to a specific job, or `{team_id}` when completing operations relevant to an entire team (like listing all available jobs). Job ID's can be determined from the job listing page or the URL. A team id is visible in the URL of the Teams tab in the Account page. \n# Resources\nThere are three primary data objects on Appen that correspond to resources on the API:\n## Jobs\nA **Job** is an interface that connects your data to an online workforce.\n  Each job on the Appen platform has data, instructions, customizable questions for your use case\n  (written in **CML** [](https://success.appen.com/hc/en-us/articles/202817989-CML-Custom-Markup-Language-Overview)),\n  [test questions](https://success.appen.com/hc/en-us/articles/202702985-How-to-Create-Test-Questions),\n  and is worked on by *Contributors*. Contributors submit *Judgments* on the rows of data via a worker interface. \n    * All jobs in a single account can be found [on your jobs page](https://client.appen.com/jobs) and will be\n    identified by a unique numeric id.\n## Units (also known as 'Rows')\nA **Unit** of data is uploaded to the job from your source data file via API or GUI. \n## Judgments \nA **Judgment** is the set of responses submitted by a contributor on a particular unit of data. It is\n  recommended to collect multiple judgments and compare them to one another or aggregate to the top response. For\n  each job, you can specify the number of judgments you would like each row to receive.\n# Responses and Messaging\nEach request to the Appen API returns an HTTP status code response and one or both of the following:\n* An application response message (in JSON) \n* A JSON representation of the object (job, unit, or judgments) requested\nSee the below sections of different API Requests, Responses and Messaging for more information:\n1. [Job Create/Update](/#tag/Job-CreateUpdate)\n2. [Manage Job Data](/#tag/Manage-Job-Data)\n3. [Job Status](/#tag/Job-Status)\n4. [Monitor Contributors](/#tag/Monitor-Contributors)\n5. [Manage Job Settings](/#tag/Manage-Job-Settings)\n6. [Job Results](/#tag/Job-Results)\n7. [Account Info](/#tag/Account-Info)\n"
+  license:
+    name: Licensed under Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://www.appen.com/privacy-statement/
+  contact:
+    email: help@appen.com
+servers:
+- url: https://api.appen.com/v1
+  description: Production Server
+tags:
+- name: Workflow Steps
+  description: Manage Workflow Steps
+paths:
+  /workflows/{workflow_id}/steps:
+    post:
+      tags:
+      - Workflow Steps
+      summary: Create Workflow Steps
+      description: Create a new **WorkflowStep** to allow routing data between various data processors. Note only job_id, mlapi_id or script_id must be provided.
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      responses:
+        '201':
+          description: The response of a workflow step
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowStepNew'
+        '422':
+          description: Unprocessable Entity. A request parameter was malformed or missing.
+          content:
+            application/json:
+              schema:
+                properties:
+                  job_id:
+                    type: string
+                    example: must be present
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                job_id:
+                  description: ID of the Job
+                  type: integer
+                  example: 1234567
+                mlapi_id:
+                  description: ID of the Model
+                  type: integer
+                  example: 2345
+                script_id:
+                  description: ID of the Script
+                  type: integer
+                  example: 3456
+        description: List of steps
+        required: true
+    get:
+      tags:
+      - Workflow Steps
+      summary: Collection of Workflow Steps
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      responses:
+        '200':
+          $ref: '#/components/responses/WorkflowStepsResponse'
+  /workflows/{workflow_id}/steps/{step_id}:
+    patch:
+      tags:
+      - Workflow Steps
+      summary: Update a Workflow Step
+      description: Change the data processor info _(i.e. `job_id`)_ or `step_number` of an existing **WorkflowStep** to allow routing data between various data processors.
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      - $ref: '#/components/parameters/workflow_step_id_param'
+      responses:
+        '200':
+          $ref: '#/components/responses/WorkflowStepResponse'
+        '422':
+          description: Unprocessable Entity. A request parameter was malformed or missing.
+          content:
+            application/json:
+              schema:
+                properties:
+                  job_id:
+                    type: string
+                    example: must be present
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                data_processor_type:
+                  type: string
+                  example: Builder::Job
+                data_processor_id:
+                  type: string
+                  example: '1234567'
+        required: true
+    delete:
+      tags:
+      - Workflow Steps
+      summary: Delete a workflow step
+      description: Delete the **WorkflowStep** record from the **Workflow**
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      - $ref: '#/components/parameters/workflow_step_id_param'
+      responses:
+        '200':
+          description: Step deleted
+        '404':
+          description: Workflow or step specified by id params not found in database.
+components:
+  schemas:
+    StepRoute:
+      type: object
+      required:
+      - workflow_step_id
+      - destination_step_id
+      properties:
+        id:
+          type: integer
+          example: 197
+          readOnly: true
+        workflow_step_id:
+          type: integer
+          example: 79
+        destination_step_id:
+          type: integer
+          example: 80
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        filter_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterRule'
+    WorkflowStepNew:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 79
+          readOnly: true
+        data_processor_id:
+          type: string
+          example: '1234567'
+        data_processor_type:
+          type: string
+          readOnly: true
+          example: Builder::Job
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        step_options:
+          type: object
+          example: {}
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRoute'
+          example: []
+    FilterRule:
+      type: object
+      required:
+      - comparison_field
+      - comparison_value
+      - comparison_operation
+      - rule_connector
+      properties:
+        id:
+          type: integer
+          example: 956
+          readOnly: true
+        comparison_field:
+          type: string
+          example: img_is_cat
+        comparison_operation:
+          type: string
+          enum:
+          - ==
+          - <
+          - '>'
+          - '!='
+          - =~
+          - <=
+          - '>='
+          example: ==
+        comparison_value:
+          type: string
+          example: 'true'
+        rule_connector:
+          type: string
+          enum:
+          - all
+          - and
+          - or
+          - rnd
+          - csp
+          - els
+          example: and
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    WorkflowStep:
+      type: object
+      required:
+      - workflow_id
+      - data_processor_type
+      - data_processor_id
+      properties:
+        id:
+          type: integer
+          example: 79
+          readOnly: true
+        data_processor_id:
+          type: string
+          example: '1234567'
+        data_processor_type:
+          type: string
+          readOnly: true
+          example: Builder::Job
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        step_options:
+          type: object
+          example: {}
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRoute'
+  responses:
+    WorkflowStepResponse:
+      description: The response of a workflow step
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WorkflowStep'
+    WorkflowStepsResponse:
+      description: The response of a workflow steps
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WorkflowStep'
+  parameters:
+    workflow_id_param:
+      in: path
+      name: workflow_id
+      required: true
+      schema:
+        type: integer
+      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
+      example: 123
+    workflow_step_id_param:
+      in: path
+      name: step_id
+      required: true
+      description: Workflow Step database ID
+      schema:
+        type: integer
+      example: 2345

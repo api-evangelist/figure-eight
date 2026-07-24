@@ -1,0 +1,448 @@
+openapi: 3.0.0
+info:
+  title: Appen Platform Account Info Manage Job Data API
+  version: 1.0.0
+  description: "# Introduction\nHello, and welcome to Appen, the leading data annotation platform for Machine Learning. Our API enables developers to build applications that can programmatically create, edit, and launch Appen jobs, download results, and more! \n\nAppen uses a RESTful API that accepts data requests as URL-encoded key-value pairs. Responses are returned in JSON and authentication is key-based.\n\nBefore integrating with the API, we highly recommend you first build and run a job using our [graphical user interface](https://client.appen.com/sessions/new). Once you have run a job successfully and are satisfied with the results, you can automate the process using the Appen API.\n\n# Authentication\nYou will need to supply your Appen API key to access the API. To find your API key:\n1. Click the Account button located in the bottom corner of the Global Navigation bar on the left side of any page.\n![Appen Authentication](/assets/img/authentication1.png \"Appen Authentication\")\n2. Click the API tab and find your key listed under the Your API Key section. \n![Appen API](/assets/img/authentication2.png \"Appen API key\")\n\nFor requests listed below, the API Key will be listed as `{api_key}`. \n\nThe API key needs to be included in the header for every request: \n```\n  headers: { \n\n   \"AUTHORIZATION\" => \"Token token={api_key}\" \n\n  } \n```\n\nYou may also see other variables, such as `{job_id}` for operations pertaining to a specific job, or `{team_id}` when completing operations relevant to an entire team (like listing all available jobs). Job ID's can be determined from the job listing page or the URL. A team id is visible in the URL of the Teams tab in the Account page. \n# Resources\nThere are three primary data objects on Appen that correspond to resources on the API:\n## Jobs\nA **Job** is an interface that connects your data to an online workforce.\n  Each job on the Appen platform has data, instructions, customizable questions for your use case\n  (written in **CML** [](https://success.appen.com/hc/en-us/articles/202817989-CML-Custom-Markup-Language-Overview)),\n  [test questions](https://success.appen.com/hc/en-us/articles/202702985-How-to-Create-Test-Questions),\n  and is worked on by *Contributors*. Contributors submit *Judgments* on the rows of data via a worker interface. \n    * All jobs in a single account can be found [on your jobs page](https://client.appen.com/jobs) and will be\n    identified by a unique numeric id.\n## Units (also known as 'Rows')\nA **Unit** of data is uploaded to the job from your source data file via API or GUI. \n## Judgments \nA **Judgment** is the set of responses submitted by a contributor on a particular unit of data. It is\n  recommended to collect multiple judgments and compare them to one another or aggregate to the top response. For\n  each job, you can specify the number of judgments you would like each row to receive.\n# Responses and Messaging\nEach request to the Appen API returns an HTTP status code response and one or both of the following:\n* An application response message (in JSON) \n* A JSON representation of the object (job, unit, or judgments) requested\nSee the below sections of different API Requests, Responses and Messaging for more information:\n1. [Job Create/Update](/#tag/Job-CreateUpdate)\n2. [Manage Job Data](/#tag/Manage-Job-Data)\n3. [Job Status](/#tag/Job-Status)\n4. [Monitor Contributors](/#tag/Monitor-Contributors)\n5. [Manage Job Settings](/#tag/Manage-Job-Settings)\n6. [Job Results](/#tag/Job-Results)\n7. [Account Info](/#tag/Account-Info)\n"
+  license:
+    name: Licensed under Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://www.appen.com/privacy-statement/
+  contact:
+    email: help@appen.com
+servers:
+- url: https://api.appen.com/v1
+  description: Production Server
+tags:
+- name: Manage Job Data
+  description: Load data to jobs and work with that data.
+  externalDocs:
+    url: https://success.appen.com/hc/en-us/articles/202703435-Jobs-Resource-Attributes
+paths:
+  /jobs/{job_id}/upload.json:
+    put:
+      tags:
+      - Manage Job Data
+      summary: Upload data to an existing job
+      description: Upload data to an existing job. Data may be uploaded in JSON or CSV format.
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - in: query
+        name: force
+        description: 'The  request fails when the fields in the data uploaded _do not
+
+          match_ the fields already present in the job. To override this
+
+          validation and force upload data, use the query parameter
+
+          `force=true`.
+
+          '
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        description: 'Accepts JSON or CSV. This action corresponds to uploading a CSV using
+
+          the "Add More Data" button displayed in the UI. Note that this request
+
+          invokes the upload operation. CSV files must be UTF-8 encoded.
+
+          '
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: success
+        '404':
+          $ref: '#/components/responses/404'
+      x-code-samples:
+      - lang: Shell
+        label: cURL - CSV
+        source: "curl -X PUT \\\n\"https://api.appen.com/v1/jobs/{job_id}/upload.json\" \\\n-H \"Authorization: Token token={api_key}\" \\\n-H \"Content-Type: text/csv\" \\\n-T \"./additional_data.csv\" \n"
+      - lang: Shell
+        label: cURL - JSON
+        source: 'curl -X PUT \
+
+          "https://api.appen.com/v1/jobs/{job_id}/upload.json" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          -H "Content-Type: application/json" \
+
+          -T "./additional_data.json"
+
+          '
+  /jobs/{job_id}/units.json:
+    get:
+      tags:
+      - Manage Job Data
+      summary: Paginated list of Units in Job
+      description: 'Gets **Units** for the **Job** identified by the `job_id` parameter of
+
+        the request. Defaults to 1000 Units per page, in order to get the next
+
+        1000 rows, you must increment the value of `page`. Keep doing so until
+
+        an empty hash is returned.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Displays 1000 units at a time.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                example:
+                - id: 1234,
+                - data: {}
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X GET \
+
+          "https://api.appen.com/v1/jobs/{job_id}/units.json" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          -d "page=1"
+
+          '
+    post:
+      tags:
+      - Manage Job Data
+      summary: Add Unit(s) to job
+      description: 'Creates a new Row in an existing Job. This is the request format and endpoint to use for unit-by-unit posting. This endpoint cannot add multiple units in a single request.
+
+
+        *Note:* test questions can also be uploaded using this endpoint. First, upload units that have a field `_golden=true`, then use the [Convert uploaded test questions](#tag/Manage-Job-Data/paths/~1jobs~1{job_id}~1gold.json/put) endpoint.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - in: query
+        name: unit[data][{column1,2,3...x}]
+        description: Accepts multiple columns, and individual data strings per column
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: unit[data][column1,2,...x_gold]
+        description: Accepts multiple columns, and individual data strings per column
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: unit[data][_golden]
+        description: TBD
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '201':
+          description: 'JSON object of the row created, including its id, data, and related
+
+            Job id. JSON application message indicating status of the operation
+
+            (e.g., Unit was successfully created)
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unit'
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X POST \
+
+          "https://api.appen.com/v1/jobs/{job_id}/units.json" \
+
+          -d "unit[data][image_url]=some_data_1" \
+
+          -d "unit[data][description]=some_data_2" \
+
+          -d "unit[data][uid]=some_data_3" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          '
+  /jobs/{job_id}/units/{unit_id}.json:
+    put:
+      tags:
+      - Manage Job Data
+      summary: Change unit state.
+      description: Update `state` for specific units on a job.
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - $ref: '#/components/parameters/unit_id'
+      - in: query
+        name: unit[state]
+        description: 'Changes the state (e.g., new, golden, finalized, canceled,
+
+          hidden_gold) of the Row specified in the request
+
+          '
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'JSON object comprising Judgment count, Row state, and timestamp values.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/unit'
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: "curl -X PUT \\\n\"https://api.appen.com/v1/jobs/{job_id}/units/{unit_id}.json\" \\\n-H \"Authorization: Token token={api_key}\" \\\n--data-urlencode \"unit[state]={new}\" \n"
+    delete:
+      tags:
+      - Manage Job Data
+      summary: Delete a unit
+      description: Delete a unit if the job state and unit state are valid for deletion.
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - $ref: '#/components/parameters/unit_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      success:
+                        type: string
+                        example: Unit {unit_id} has been deleted.
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X DELETE \
+
+          "https://api.appen.com/v1/jobs/{job_id}/units/{unit_id}.json" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          '
+  /jobs/{job_id}/units/{unit_id}/cancel.json:
+    post:
+      tags:
+      - Manage Job Data
+      summary: Cancel a unit.
+      description: 'Will cancel a unit in state New or Judgable if the row has not collected any judgments yet.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - $ref: '#/components/parameters/unit_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: string
+                    example: Unit {unit_id} has been canceled.
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X POST \
+
+          "https://api.appen.com/v1/jobs/{job_id}/units/{unit_id}/cancel.json" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          '
+  /jobs/{job_id}/gold.json:
+    put:
+      tags:
+      - Manage Job Data
+      summary: Convert uploaded test questions.
+      description: 'Corresponds to the "Convert Uploaded Test Questions" button on the Job''s DATA page.
+
+        All units where `_golden` is set to `true` will be converted to test questions.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      responses:
+        '200':
+          description: Test Question Rows in the specified Job
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unit'
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X PUT \
+
+          "https://api.appen.com/v1/jobs/{job_id}/gold.json" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          '
+  /jobs/{job_id}/test_questions:
+    get:
+      tags:
+      - Manage Job Data
+      summary: Get all test question units.
+      description: Get all test question units.
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      responses:
+        '200':
+          description: Test Question Rows in the specified Job
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unit'
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X GET \
+
+          "https://api.appen.com/v1/jobs/{job_id}/gold.json" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          '
+  /jobs/{job_id}/units/ping.json:
+    get:
+      tags:
+      - Manage Job Data
+      summary: Get count of all rows in a job.
+      description: Get count of all rows in a job.
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      responses:
+        '200':
+          description: JSON object containing count of Rows in Job
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: "curl -X GET \\\n\"https://api.appen.com/v1/jobs/{job_id}/units/ping.json\" \\\n-H \"Authorization: Token token={api_key}\" \n"
+components:
+  schemas:
+    new_job_id:
+      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
+      type: integer
+      format: int64
+      readOnly: true
+      minimum: 1
+      maximum: 9223372036854776000
+      example: 1234567
+    unit:
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+          example: 1234
+        data:
+          type: object
+          example: {}
+        judgments_count:
+          type: integer
+          format: int32
+        state:
+          type: string
+          enum:
+          - new
+          - judgable
+          - judging
+          - judged
+          - ordering
+          - golden
+          - hidden_gold
+          - canceled
+          - finalized
+          - preprocessing
+        agreement:
+          type: number
+          multipleOf: 0.01
+        missed_count:
+          type: integer
+          format: int32
+        contested_count:
+          type: integer
+          format: int32
+        gold_pool:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        job_id:
+          type: integer
+          format: int32
+          readOnly: true
+          example: 425765
+  parameters:
+    page:
+      in: query
+      name: page
+      description: "A desired page of paginated results to return. \n"
+      required: false
+      schema:
+        type: integer
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
+    unit_id:
+      name: unit_id
+      in: path
+      required: true
+      description: "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+      schema:
+        type: integer
+        format: int32
+    job_id:
+      in: path
+      name: job_id
+      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+      required: true
+      schema:
+        $ref: '#/components/schemas/new_job_id'
+  responses:
+    '404':
+      description: 'Not Found. The resource you are referencing does not exist, or you don''''t own it.
+
+        '

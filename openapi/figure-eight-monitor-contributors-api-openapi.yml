@@ -1,0 +1,235 @@
+openapi: 3.0.0
+info:
+  title: Appen Platform Account Info Monitor Contributors API
+  version: 1.0.0
+  description: "# Introduction\nHello, and welcome to Appen, the leading data annotation platform for Machine Learning. Our API enables developers to build applications that can programmatically create, edit, and launch Appen jobs, download results, and more! \n\nAppen uses a RESTful API that accepts data requests as URL-encoded key-value pairs. Responses are returned in JSON and authentication is key-based.\n\nBefore integrating with the API, we highly recommend you first build and run a job using our [graphical user interface](https://client.appen.com/sessions/new). Once you have run a job successfully and are satisfied with the results, you can automate the process using the Appen API.\n\n# Authentication\nYou will need to supply your Appen API key to access the API. To find your API key:\n1. Click the Account button located in the bottom corner of the Global Navigation bar on the left side of any page.\n![Appen Authentication](/assets/img/authentication1.png \"Appen Authentication\")\n2. Click the API tab and find your key listed under the Your API Key section. \n![Appen API](/assets/img/authentication2.png \"Appen API key\")\n\nFor requests listed below, the API Key will be listed as `{api_key}`. \n\nThe API key needs to be included in the header for every request: \n```\n  headers: { \n\n   \"AUTHORIZATION\" => \"Token token={api_key}\" \n\n  } \n```\n\nYou may also see other variables, such as `{job_id}` for operations pertaining to a specific job, or `{team_id}` when completing operations relevant to an entire team (like listing all available jobs). Job ID's can be determined from the job listing page or the URL. A team id is visible in the URL of the Teams tab in the Account page. \n# Resources\nThere are three primary data objects on Appen that correspond to resources on the API:\n## Jobs\nA **Job** is an interface that connects your data to an online workforce.\n  Each job on the Appen platform has data, instructions, customizable questions for your use case\n  (written in **CML** [](https://success.appen.com/hc/en-us/articles/202817989-CML-Custom-Markup-Language-Overview)),\n  [test questions](https://success.appen.com/hc/en-us/articles/202702985-How-to-Create-Test-Questions),\n  and is worked on by *Contributors*. Contributors submit *Judgments* on the rows of data via a worker interface. \n    * All jobs in a single account can be found [on your jobs page](https://client.appen.com/jobs) and will be\n    identified by a unique numeric id.\n## Units (also known as 'Rows')\nA **Unit** of data is uploaded to the job from your source data file via API or GUI. \n## Judgments \nA **Judgment** is the set of responses submitted by a contributor on a particular unit of data. It is\n  recommended to collect multiple judgments and compare them to one another or aggregate to the top response. For\n  each job, you can specify the number of judgments you would like each row to receive.\n# Responses and Messaging\nEach request to the Appen API returns an HTTP status code response and one or both of the following:\n* An application response message (in JSON) \n* A JSON representation of the object (job, unit, or judgments) requested\nSee the below sections of different API Requests, Responses and Messaging for more information:\n1. [Job Create/Update](/#tag/Job-CreateUpdate)\n2. [Manage Job Data](/#tag/Manage-Job-Data)\n3. [Job Status](/#tag/Job-Status)\n4. [Monitor Contributors](/#tag/Monitor-Contributors)\n5. [Manage Job Settings](/#tag/Manage-Job-Settings)\n6. [Job Results](/#tag/Job-Results)\n7. [Account Info](/#tag/Account-Info)\n"
+  license:
+    name: Licensed under Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://www.appen.com/privacy-statement/
+  contact:
+    email: help@appen.com
+servers:
+- url: https://api.appen.com/v1
+  description: Production Server
+tags:
+- name: Monitor Contributors
+  description: Monitor contributor status and settings.
+  externalDocs:
+    url: https://success.appen.com/hc/en-us/articles/202703435-Jobs-Resource-Attributes
+paths:
+  /jobs/{job_id}/workers/{contributor_id}/bonus.json:
+    post:
+      tags:
+      - Monitor Contributors
+      summary: Pay a contributor bonus.
+      description: 'Pay a Contributor Bonus. Deposits bonus payment amount specified in the
+
+        request into the indicated Contributor''s account. Corresponds to Award
+
+        Bonus button in the UI.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - $ref: '#/components/parameters/contributor_id'
+      - in: query
+        name: amount
+        description: A USD value specified in cents i.e. $5.00 == `amount=500`
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: JSON application message indicating status of operation
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: "# pay a $5 USD bonus to worker identified by {contributor_id} \ncurl -X POST \\\n\"https://api.appen.com/v1/jobs/{job_id}/workers/{contributor_id}/bonus.json\" \\\n-d \"amount=500\" \\\n-H \"Authorization: Token token={api_key}\" \\\n"
+  /jobs/{job_id}/workers/{contributor_id}/notify.json:
+    post:
+      tags:
+      - Monitor Contributors
+      summary: Send a message to a contributor.
+      description: 'Notify a Contributor. Notifies a Contributor with the message provided
+
+        in the request.  The notification appears in the Contributor''s
+
+        dashboard. Corresponds to the Notify Contributor button showns in the
+
+        UI.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - $ref: '#/components/parameters/contributor_id'
+      - in: query
+        name: message
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: JSON application message indicating status of operation
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: '# send praise to worker identified by {contributor_id};
+
+          curl -X POST \
+
+          "https://api.appen.com/v1/jobs/{job_id}/workers/{contributor_id}/notify.json" \
+
+          --data-urlencode "message=Nice work on X, thanks!!" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          '
+  /jobs/{job_id}/workers/{contributor_id}.json:
+    put:
+      tags:
+      - Monitor Contributors
+      summary: Control contributor flags.
+      description: Flag and unflag contributors on a job
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - $ref: '#/components/parameters/contributor_id'
+      - in: query
+        name: flag
+        required: false
+        description: 'Flags a contributor with the reason indicated in the request.
+
+          Corresponds to the Flag button on the Contributors page.
+
+          '
+        schema:
+          type: string
+      - in: query
+        name: unflag
+        required: false
+        description: Unflags a contributor with the reason indicated in the request
+        schema:
+          type: string
+      - in: query
+        name: persist
+        required: false
+        description: 'Flags a contributor with the reason indicated in the request across
+
+          all jobs for a user. Corresponds to the Flag button on the
+
+          Contributors page.
+
+          '
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: JSON application message indicating status of operation
+      x-code-samples:
+      - lang: Shell
+        label: cURL - flag
+        source: '# flag worker identified by {contributor_id};
+
+          curl -X PUT \
+
+          "https://api.appen.com/v1/jobs/{job_id}/workers/{contributor_id}.json" \
+
+          --data-urlencode "flag=All answers in Job 12345 were ASDFGHJK" \
+
+          -H "Authorization: Token token={api_key}"
+
+          '
+      - lang: Shell
+        label: cURL - unflag
+        source: '# flag worker identified by {contributor_id};
+
+          curl -X PUT \
+
+          "https://api.appen.com/v1/jobs/{job_id}/workers/{contributor_id}.json" \
+
+          --data-urlencode "unflag=There was an encoding issue that garbled their answers" \
+
+          -H "Authorization: Token token={api_key}" \
+
+          '
+  /jobs/{job_id}/workers/{contributor_id}/reject.json:
+    put:
+      tags:
+      - Monitor Contributors
+      summary: Reject a contributor.
+      description: Rejects a contributor with the reason indicated in the request.
+      parameters:
+      - $ref: '#/components/parameters/job_id'
+      - $ref: '#/components/parameters/api_key'
+      - $ref: '#/components/parameters/contributor_id'
+      - in: query
+        name: reason
+        required: false
+        description: 'Flags a contributor with the reason indicated in the request.
+
+          Corresponds to the Flag button on the Contributors page.
+
+          '
+        schema:
+          type: string
+      - in: query
+        name: manual
+        required: true
+        description: Set to "true" for the reject to work...
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: JSON application message indicating status of operation
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: '# reject worker identified by {contributor_id}
+
+          curl -X PUT \
+
+          "https://api.appen.com/v1/jobs/{job_id}/workers/{contributor_id}/reject.json" \
+
+          -d "reason=All answers in Job 12345 were ASDFGHJK" \
+
+          -d "manual=true" \
+
+          -H "Authorization: Token token={api_key}"
+
+          '
+components:
+  schemas:
+    new_job_id:
+      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
+      type: integer
+      format: int64
+      readOnly: true
+      minimum: 1
+      maximum: 9223372036854776000
+      example: 1234567
+  parameters:
+    contributor_id:
+      name: contributor_id
+      in: path
+      required: true
+      description: "A unique identifier for an individual contributor who provides judgements (annotations) on units. Variable name: `{contributor_id}`. \n"
+      schema:
+        type: integer
+        format: int32
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
+    job_id:
+      in: path
+      name: job_id
+      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+      required: true
+      schema:
+        $ref: '#/components/schemas/new_job_id'

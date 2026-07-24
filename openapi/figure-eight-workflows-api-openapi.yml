@@ -1,0 +1,619 @@
+openapi: 3.0.0
+info:
+  title: Appen Platform Account Info Workflows API
+  version: 1.0.0
+  description: "# Introduction\nHello, and welcome to Appen, the leading data annotation platform for Machine Learning. Our API enables developers to build applications that can programmatically create, edit, and launch Appen jobs, download results, and more! \n\nAppen uses a RESTful API that accepts data requests as URL-encoded key-value pairs. Responses are returned in JSON and authentication is key-based.\n\nBefore integrating with the API, we highly recommend you first build and run a job using our [graphical user interface](https://client.appen.com/sessions/new). Once you have run a job successfully and are satisfied with the results, you can automate the process using the Appen API.\n\n# Authentication\nYou will need to supply your Appen API key to access the API. To find your API key:\n1. Click the Account button located in the bottom corner of the Global Navigation bar on the left side of any page.\n![Appen Authentication](/assets/img/authentication1.png \"Appen Authentication\")\n2. Click the API tab and find your key listed under the Your API Key section. \n![Appen API](/assets/img/authentication2.png \"Appen API key\")\n\nFor requests listed below, the API Key will be listed as `{api_key}`. \n\nThe API key needs to be included in the header for every request: \n```\n  headers: { \n\n   \"AUTHORIZATION\" => \"Token token={api_key}\" \n\n  } \n```\n\nYou may also see other variables, such as `{job_id}` for operations pertaining to a specific job, or `{team_id}` when completing operations relevant to an entire team (like listing all available jobs). Job ID's can be determined from the job listing page or the URL. A team id is visible in the URL of the Teams tab in the Account page. \n# Resources\nThere are three primary data objects on Appen that correspond to resources on the API:\n## Jobs\nA **Job** is an interface that connects your data to an online workforce.\n  Each job on the Appen platform has data, instructions, customizable questions for your use case\n  (written in **CML** [](https://success.appen.com/hc/en-us/articles/202817989-CML-Custom-Markup-Language-Overview)),\n  [test questions](https://success.appen.com/hc/en-us/articles/202702985-How-to-Create-Test-Questions),\n  and is worked on by *Contributors*. Contributors submit *Judgments* on the rows of data via a worker interface. \n    * All jobs in a single account can be found [on your jobs page](https://client.appen.com/jobs) and will be\n    identified by a unique numeric id.\n## Units (also known as 'Rows')\nA **Unit** of data is uploaded to the job from your source data file via API or GUI. \n## Judgments \nA **Judgment** is the set of responses submitted by a contributor on a particular unit of data. It is\n  recommended to collect multiple judgments and compare them to one another or aggregate to the top response. For\n  each job, you can specify the number of judgments you would like each row to receive.\n# Responses and Messaging\nEach request to the Appen API returns an HTTP status code response and one or both of the following:\n* An application response message (in JSON) \n* A JSON representation of the object (job, unit, or judgments) requested\nSee the below sections of different API Requests, Responses and Messaging for more information:\n1. [Job Create/Update](/#tag/Job-CreateUpdate)\n2. [Manage Job Data](/#tag/Manage-Job-Data)\n3. [Job Status](/#tag/Job-Status)\n4. [Monitor Contributors](/#tag/Monitor-Contributors)\n5. [Manage Job Settings](/#tag/Manage-Job-Settings)\n6. [Job Results](/#tag/Job-Results)\n7. [Account Info](/#tag/Account-Info)\n"
+  license:
+    name: Licensed under Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://www.appen.com/privacy-statement/
+  contact:
+    email: help@appen.com
+servers:
+- url: https://api.appen.com/v1
+  description: Production Server
+tags:
+- name: Workflows
+  description: Copy, launch, pause and resume workflows, check status and configuration values
+paths:
+  /workflows:
+    post:
+      tags:
+      - Workflows
+      summary: Create a new workflow.
+      description: Create a Workflow for processing data via jobs in the core platform or models via the Model Gateway Services.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: Data Parser Workflow
+                description:
+                  type: string
+                  example: An optional description for this workflow
+                user_id:
+                  type: string
+                  format: uuid
+                  example: 00000000-0000-0000-0000-000000000001
+      responses:
+        '201':
+          $ref: '#/components/responses/NewWorkflowResponse'
+        '400':
+          description: invalid input, object invalid due to missing team_id, user_id or name.
+        '422':
+          description: Unprocessable Entity. A request parameter was malformed or missing.
+          content:
+            application/json:
+              schema:
+                properties:
+                  name:
+                    type: string
+                    example: must be present
+  /workflows/{workflow_id}/launch:
+    servers:
+    - url: https://api-beta.appen.com/v2
+      description: Production Server - Latest API
+    post:
+      tags:
+      - Workflows
+      summary: Launch a Workflow.
+      description: Launches the Workflow to contributors, models to predict and/or scripts.
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      - $ref: '#/components/parameters/launch_rows_query'
+      - $ref: '#/components/parameters/api_key'
+      responses:
+        '202':
+          description: Accepted, i.e. row launch action was triggered and workflow data ingestion is being kicked off.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+        '400':
+          description: Bad Request. You failed to pass one or more required parameters.
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: The request was invalid
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          description: Unprocessable Entity. A request parameter was malformed or missing.
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: array
+                    example:
+                    - Workflow has only 1000 rows to order
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X POST \
+
+          "https://api-beta.appen.com/v2/workflows/{workflow_id}/launch?&rows={num_rows_to_launch}"
+
+          -H "Authorization: Token token={api_key}" \
+
+          '
+  /workflows/{workflow_id}/pause:
+    servers:
+    - url: https://api-beta.appen.com/v2
+      description: Production Server - Latest API
+    post:
+      tags:
+      - Workflows
+      summary: Pause a Workflow.
+      description: Pauses a Running state Workflow only.
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      - $ref: '#/components/parameters/api_key'
+      responses:
+        '202':
+          description: Accepted, i.e. action was triggered via AASM event or other method.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          description: Unprocessable Entity. A request parameter was malformed or missing.
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: array
+                    example:
+                    - Error while configuring action 'pause' for step 1234. Make sure the job 1234567 exists and you own it.
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: "curl -X POST \\\n\"https://api-beta.appen.com/v2/workflows/{workflow_id}/pause\" \\\n-H \"Authorization: Token token={api_key}\" \n"
+  /workflows/{workflow_id}/resume:
+    servers:
+    - url: https://api-beta.appen.com/v2
+      description: Production Server - Latest API
+    post:
+      tags:
+      - Workflows
+      summary: Resume a paused Workflow.
+      description: Resumes a Paused state Workflow only.
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      - $ref: '#/components/parameters/api_key'
+      responses:
+        '202':
+          description: Accepted, i.e. action was triggered via AASM event or other method.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          description: Unprocessable Entity. A request parameter was malformed or missing.
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: array
+                    example:
+                    - The workflow is already running
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: "curl -X POST \\\n\"https://api-beta.appen.com/v2/workflows/{workflow_id}/resume\"\n-H \"Authorization: Token token={api_key}\" \n"
+  /workflows/{workflow_id}/copy:
+    servers:
+    - url: https://api-beta.appen.com/v2
+      description: Production Server - Latest API
+    post:
+      tags:
+      - Workflows
+      summary: Copy an existing Workflow.
+      description: Copy a new, paused or finished Workflow.
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      - $ref: '#/components/parameters/api_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: new workflow
+      responses:
+        '201':
+          description: Copy service was able to copy workflow configuration successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          description: Unprocessable Entity. A request parameter was malformed or missing.
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: array
+                    example:
+                    - Workflow cannot be copied
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: "curl -X POST \\\n\"https://api-beta.appen.com/v2/workflows/{workflow_id}/copy\"\n-H \"Authorization: Token token={api_key}\" \n"
+  /workflows/{workflow_id}/poll:
+    servers:
+    - url: https://api-beta.appen.com/v2
+      description: Production Server - Latest API
+    get:
+      tags:
+      - Workflows
+      summary: Poll the current state and metadata for a workflow
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      - $ref: '#/components/parameters/api_key'
+      responses:
+        '200':
+          description: Workflow JSON
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowCompact'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X GET \
+
+          "https://api-beta.appen.com/v2/workflows/{workflow_id}/poll"
+
+          -H "Authorization: Token token={api_key}"
+
+          '
+  /workflows/{workflow_id}:
+    servers:
+    - url: https://api-beta.appen.com/v2
+      description: Production Server - Latest API
+    get:
+      tags:
+      - Workflows
+      summary: Get current workflow config
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      - $ref: '#/components/parameters/api_key'
+      responses:
+        '200':
+          description: Workflow JSON
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      x-code-samples:
+      - lang: Shell
+        label: cURL
+        source: 'curl -X GET \
+
+          "https://api-beta.appen.com/v2/workflows/{workflow_id}" \
+
+          -H "Authorization: Token token={api_key}"
+
+          '
+    patch:
+      tags:
+      - Workflows
+      summary: Partially update a Workflow.
+      description: Update specific attributes of a given workflow, such as name or description.
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: Data Parser Workflow
+                description:
+                  type: string
+                  example: An optional description for this workflow
+                user_id:
+                  type: string
+                  format: uuid
+                  example: 00000000-0000-0000-0000-000000000001
+      responses:
+        '200':
+          $ref: '#/components/responses/NewWorkflowResponse'
+        '400':
+          description: invalid input, object invalid due to missing team_id, user_id or name.
+        '422':
+          description: Unprocessable Entity. A request parameter was malformed or missing.
+          content:
+            application/json:
+              schema:
+                properties:
+                  name:
+                    type: string
+                    example: must be present
+    delete:
+      tags:
+      - Workflows
+      summary: Deletes a workflow.
+      description: Workflow deletion works only before first launch.
+      parameters:
+      - $ref: '#/components/parameters/workflow_id_param'
+      responses:
+        '200':
+          description: Workflow successfully deleted
+        '403':
+          description: Delete Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: array
+                    example:
+                    - Workflows cannot be deleted once they have been launched
+components:
+  responses:
+    '422':
+      description: 'Unprocessable Entity. A request parameter was malformed or missing.
+
+        '
+    NewWorkflowResponse:
+      description: The response of a new workflow
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1234
+              name:
+                type: string
+                example: Data Parser Workflow
+              description:
+                type: string
+                example: A sample description for this workflow
+              status:
+                type: string
+                example: new
+              status_description:
+                type: string
+                example: null
+              team_id:
+                type: string
+                format: uuid
+                example: 00000000-0000-0000-0000-000000000002
+              orderer_rows:
+                type: integer
+                example: 0
+              created_at:
+                description: Timestamp of when the workflow was created
+                type: string
+                format: date-time
+                readOnly: true
+              updated_at:
+                description: Timestamp of the last User or API action that changed a workflow state or setting
+                type: string
+                format: date-time
+                readOnly: true
+              workflow_id:
+                type: integer
+                example: 1234
+              steps:
+                type: array
+                items:
+                  type: object
+                example: []
+              url:
+                type: string
+                example: https://api-beta.appen.com/v2/workflows/1234
+    '403':
+      description: 'Access Denied. You do not have permission to access the resource you are referencing.
+
+        '
+    '404':
+      description: 'Not Found. The resource you are referencing does not exist, or you don''''t own it.
+
+        '
+  schemas:
+    StepRoute:
+      type: object
+      required:
+      - workflow_step_id
+      - destination_step_id
+      properties:
+        id:
+          type: integer
+          example: 197
+          readOnly: true
+        workflow_step_id:
+          type: integer
+          example: 79
+        destination_step_id:
+          type: integer
+          example: 80
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        filter_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterRule'
+    WorkflowCompact:
+      type: object
+      required:
+      - name
+      - team_id
+      - user_id
+      properties:
+        id:
+          type: integer
+          example: 79
+        team_id:
+          type: string
+          format: uuid
+          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
+        user_id:
+          type: string
+          format: uuid
+          example: ec006e04-86d6-40d6-aaed-5d717a1be778
+        name:
+          type: string
+          example: Three step image categorization and rating 001
+        description:
+          type: string
+          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
+        status:
+          type: string
+          example: running
+        status_description:
+          type: string
+          example: null
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    FilterRule:
+      type: object
+      required:
+      - comparison_field
+      - comparison_value
+      - comparison_operation
+      - rule_connector
+      properties:
+        id:
+          type: integer
+          example: 956
+          readOnly: true
+        comparison_field:
+          type: string
+          example: img_is_cat
+        comparison_operation:
+          type: string
+          enum:
+          - ==
+          - <
+          - '>'
+          - '!='
+          - =~
+          - <=
+          - '>='
+          example: ==
+        comparison_value:
+          type: string
+          example: 'true'
+        rule_connector:
+          type: string
+          enum:
+          - all
+          - and
+          - or
+          - rnd
+          - csp
+          - els
+          example: and
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    Workflow:
+      type: object
+      required:
+      - name
+      - team_id
+      - user_id
+      properties:
+        id:
+          type: integer
+          example: 79
+        workflow_id:
+          type: integer
+          format: string
+          deprecated: true
+        team_id:
+          type: string
+          format: uuid
+          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
+        user_id:
+          type: string
+          format: uuid
+          example: ec006e04-86d6-40d6-aaed-5d717a1be778
+        name:
+          type: string
+          example: Three step image categorization and rating 001
+        description:
+          type: string
+          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
+        status:
+          type: string
+          example: paused
+        status_description:
+          type: string
+          example: Paused by admin
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStep'
+    WorkflowStep:
+      type: object
+      required:
+      - workflow_id
+      - data_processor_type
+      - data_processor_id
+      properties:
+        id:
+          type: integer
+          example: 79
+          readOnly: true
+        data_processor_id:
+          type: string
+          example: '1234567'
+        data_processor_type:
+          type: string
+          readOnly: true
+          example: Builder::Job
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        step_options:
+          type: object
+          example: {}
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRoute'
+  parameters:
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
+    workflow_id_param:
+      in: path
+      name: workflow_id
+      required: true
+      schema:
+        type: integer
+      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
+      example: 123
+    launch_rows_query:
+      in: query
+      name: rows
+      required: true
+      schema:
+        type: integer
+      description: The number of rows to launch through the specified workflow
