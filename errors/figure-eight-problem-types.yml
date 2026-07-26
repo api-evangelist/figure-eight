@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/figure-eight-openapi-original.json
+format: json
+note: >-
+  Derived from the 4xx status responses declared across the OpenAPI. Responses
+  return a plain JSON message body, not RFC 9457 application/problem+json.
+problems:
+- status: 400
+  title: Bad Request
+  detail: One or more required parameters were not passed, or input is invalid (e.g. missing team_id, user_id, or name).
+- status: 403
+  title: Forbidden
+  detail: The requested operation is not permitted (e.g. delete forbidden for the resource in its current state).
+- status: 404
+  title: Not Found
+  detail: The job, unit, workflow, step, route, or filter rule specified by the id path/params does not exist or does not belong to the account; or no report link is available to download.
+- status: 422
+  title: Unprocessable Entity
+  detail: A request parameter was malformed or missing and could not be processed.

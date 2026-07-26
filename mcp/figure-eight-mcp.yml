@@ -1,0 +1,61 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/figure-eight-openapi-original.json
+note: >-
+  No official hosted/remote MCP server was found for Figure Eight (the company
+  was absorbed into Appen). This is a candidate tool list derived from the
+  OpenAPI operations; the spec declares no operationIds, so tools are named from
+  HTTP method + path.
+server:
+  name: figure-eight
+  transport: http
+tools:
+- name: create_job
+  description: Create a new annotation job.
+  source_operation: openapi/figure-eight-openapi-original.json#POST /jobs.json
+- name: list_jobs
+  description: Paginated list of jobs available to the account.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /jobs.json
+- name: get_job
+  description: Get a job's attributes.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /jobs/{job_id}.json
+- name: update_job
+  description: Update a given job.
+  source_operation: openapi/figure-eight-openapi-original.json#PUT /jobs/{job_id}.json
+- name: upload_job_data
+  description: Upload unit data to an existing job.
+  source_operation: openapi/figure-eight-openapi-original.json#PUT /jobs/{job_id}/upload.json
+- name: add_units
+  description: Add unit(s) to a job.
+  source_operation: openapi/figure-eight-openapi-original.json#POST /jobs/{job_id}/units.json
+- name: list_units
+  description: Paginated list of units in a job.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /jobs/{job_id}/units.json
+- name: launch_job
+  description: Launch (order) a job.
+  source_operation: openapi/figure-eight-openapi-original.json#POST /jobs/{job_id}/orders.json
+- name: pause_job
+  description: Pause a running job.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /jobs/{job_id}/pause.json
+- name: resume_job
+  description: Resume a paused job.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /jobs/{job_id}/resume.json
+- name: job_status
+  description: Get the status/progress of a job.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /jobs/{job_id}/ping.json
+- name: get_judgments
+  description: Get rows with aggregated judgments.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /jobs/{job_id}/judgments.json
+- name: get_account
+  description: Get account information.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /account
+- name: create_workflow
+  description: Create a new workflow.
+  source_operation: openapi/figure-eight-openapi-original.json#POST /workflows
+- name: launch_workflow
+  description: Launch a workflow.
+  source_operation: openapi/figure-eight-openapi-original.json#POST /workflows/{workflow_id}/launch
+- name: poll_workflow
+  description: Poll the current state and metadata for a workflow.
+  source_operation: openapi/figure-eight-openapi-original.json#GET /workflows/{workflow_id}/poll

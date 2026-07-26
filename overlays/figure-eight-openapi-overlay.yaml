@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Figure Eight API
+  version: 1.0.0
+extends: openapi/figure-eight-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: figure-eight
+    x-apievangelist-status: acquired-by-appen
+    x-apievangelist-note: >-
+      Figure Eight (formerly CrowdFlower) was acquired by Appen in 2019; this API
+      is now served as the Appen Platform API at api.appen.com/v1.
+- target: $.components
+  update:
+    securitySchemes:
+      apiKeyAuth:
+        type: apiKey
+        in: query
+        name: key
+        description: >-
+          Account API key passed as the `key` query parameter on every request.
+          Documented in the API-at-a-Glance guide; not present in the source spec.
+- target: $
+  update:
+    security:
+    - apiKeyAuth: []

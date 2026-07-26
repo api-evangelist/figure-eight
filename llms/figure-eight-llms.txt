@@ -1,0 +1,30 @@
+# Figure Eight
+
+> Figure Eight (formerly CrowdFlower, originally Dolores Labs) was a human-in-the-loop machine learning company founded in San Francisco in 2007. Its platform turned unlabeled text, image, audio, and video into high-quality AI training data via a distributed contributor workforce, exposed through a RESTful, API-key-authenticated JSON API. Figure Eight was acquired by Appen in March 2019; the API is now served as the Appen Platform API at api.appen.com/v1. This profile captures that surviving API surface.
+
+## APIs
+
+- [Figure Eight API (Appen Platform API)](https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0): RESTful JSON API for creating, launching, and monitoring annotation jobs and multi-step workflows. Base URL https://api.appen.com/v1. API-key auth via the `key` query parameter.
+
+## Specs
+
+- [OpenAPI 3.0](openapi/figure-eight-openapi-original.json): 63 operations across jobs, units, ontologies, contributors, workflows, steps, routes, and filter rules.
+- [OpenAPI Overlay](overlays/figure-eight-openapi-overlay.yaml): API Evangelist enhancements (documents the api-key security scheme).
+
+## Docs
+
+- [API Reference (SwaggerHub)](https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0)
+- [CML — Custom Markup Language docs](http://crowdflower.github.io/CML/)
+- [GitHub organization (CrowdFlower)](https://github.com/CrowdFlower)
+
+## Artifacts
+
+- [Authentication](authentication/figure-eight-authentication.yml): API-key in `key` query parameter.
+- [Conventions](conventions/figure-eight-conventions.yml): url-encoded params, page-number pagination, JSON responses, per-job webhooks.
+- [Error catalog](errors/figure-eight-problem-types.yml): 400/403/404/422 JSON error responses.
+- [Data model](data-model/figure-eight-data-model.yml): job, unit, workflow, step, route, filter rule.
+- [Lifecycle](lifecycle/figure-eight-lifecycle.yml): uri-path v1; provider acquired by Appen.
+- [Conformance](conformance/figure-eight-conformance.yml): OpenAPI 3.0, REST/JSON, pagination, webhooks.
+- [Packages / SDKs](packages/figure-eight-packages.yml): first-party Ruby gem `crowdflower`.
+- [Webhooks](asyncapi/figure-eight-webhooks.yml): per-job callback via `job[webhook_uri]`.
+- [MCP (candidate)](mcp/figure-eight-mcp.yml): candidate tool list derived from operations.

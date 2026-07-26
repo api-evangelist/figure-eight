@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+host: https://api.appen.com
+note: >-
+  Probed the API host well-known discovery surface. All endpoints returned 401
+  (the API host requires authentication and serves no anonymous discovery
+  documents); appen.com/.well-known/security.txt returned 404. No documents were
+  saved. Absence is valid recorded data.
+documents:
+- path: /.well-known/security.txt
+  host: https://api.appen.com
+  status: 401
+- path: /.well-known/openid-configuration
+  host: https://api.appen.com
+  status: 401
+- path: /.well-known/oauth-authorization-server
+  host: https://api.appen.com
+  status: 401
+- path: /.well-known/api-catalog
+  host: https://api.appen.com
+  status: 401
+- path: /.well-known/ai-plugin.json
+  host: https://api.appen.com
+  status: 401
+- path: /.well-known/security.txt
+  host: https://appen.com
+  status: 404

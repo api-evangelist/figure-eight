@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/figure-eight-openapi-original.json
+type: Webhooks
+note: >-
+  Figure Eight jobs support an outbound callback (webhook) to a URL configured
+  per job via the job[webhook_uri] parameter. No published AsyncAPI document was
+  found; this captures the webhook surface derived from the OpenAPI. The platform
+  POSTs job/unit lifecycle notifications to the configured URI as the job runs
+  and completes.
+webhooks:
+- name: job_notification
+  delivery: outbound-http-callback
+  configured_via: job[webhook_uri]
+  configured_on:
+  - POST /jobs.json
+  - PUT /jobs/{job_id}.json
+  transport: HTTP POST to the configured job webhook_uri
+  description: >-
+    Per-job callback fired on job/unit lifecycle events (e.g. units judged, job
+    finalized) to the URL set in the job's webhook_uri setting.

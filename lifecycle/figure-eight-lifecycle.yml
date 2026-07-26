@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/figure-eight-openapi-original.json
+note: >-
+  Figure Eight was acquired by Appen (March 2019) and its assets integrated by
+  2020; the API is now served as the Appen Platform API. No public versioning,
+  deprecation, or SLA policy page was found for the Figure Eight surface, and no
+  operations are marked deprecated in the spec.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.appen.com/v1
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+deprecated_operations: []
+provider_status:
+  state: acquired
+  acquirer: appen
+  date: '2019-03'
+  detail: figure-eight.com redirects to appen.com; the API is now the Appen Platform API.

@@ -1,0 +1,47 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/figure-eight-openapi-original.json
+note: >-
+  Cross-cutting request/response semantics derived from the OpenAPI and the
+  API-at-a-Glance docs. No idempotency-key contract is documented, so no
+  Idempotency pointer is emitted.
+authentication:
+  style: api-key
+  location: query
+  parameter: key
+  detail: See authentication/figure-eight-authentication.yml
+request_encoding:
+  style: url-encoded key-value pairs
+  bracket_params: true
+  note: Nested job/unit attributes use PHP-style bracket keys, e.g. job[title], unit[data][col].
+pagination:
+  style: page-number
+  params:
+    page: 1-indexed page number on collection endpoints (jobs, units, judgments)
+  note: Collection endpoints are paginated; use ?page=N to iterate.
+response_format:
+  media_types: [application/json, application/octet-stream, text/plain]
+  note: JSON for resources; octet-stream/text for CSV report and ontology downloads.
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: See lifecycle/figure-eight-lifecycle.yml
+error_envelope:
+  format: json
+  note: >-
+    4xx responses return a JSON body with a human-readable message; not RFC 9457
+    problem+json. See errors/figure-eight-problem-types.yml.
+idempotency:
+  supported: false
+  note: No idempotency-key header/parameter is documented.
+rate_limiting:
+  documented: false
+webhooks:
+  supported: true
+  mechanism: Per-job callback URL set via the job[webhook_uri] parameter.
+  detail: See asyncapi/figure-eight-webhooks.yml
+cross_links:
+  authentication: authentication/figure-eight-authentication.yml
+  errors: errors/figure-eight-problem-types.yml
+  lifecycle: lifecycle/figure-eight-lifecycle.yml
+  data_model: data-model/figure-eight-data-model.yml

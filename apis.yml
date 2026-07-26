@@ -1,8 +1,31 @@
 aid: figure-eight
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/figure-eight.png
 name: Figure Eight
-description: 'Figure Eight is a company surfaced as a portfolio company of trinity-ventures and added
-  to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Figure Eight (formerly CrowdFlower, and originally Dolores Labs) was a
+  human-in-the-loop machine learning and artificial intelligence company founded
+  in San Francisco in 2007 by Lukas Biewald and Chris Van Pelt. Its platform
+  turned unlabeled text, image, audio, and video into high-quality AI training
+  data by combining automation with a distributed contributor workforce. The
+  company exposed a RESTful, key-authenticated JSON API for programmatically
+  creating, configuring, launching, and monitoring annotation jobs and
+  multi-step workflows, and for downloading aggregated judgments and reports.
+  Figure Eight was acquired by Appen in March 2019 for up to $300M; by 2020 its
+  assets were fully integrated into Appen and the API is now served as the Appen
+  Platform API at api.appen.com. This profile captures that surviving API
+  surface. figure-eight.com now redirects to appen.com.
 url: https://raw.githubusercontent.com/api-evangelist/figure-eight/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,15 +33,217 @@ x-backed-by:
 - trinity-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-status: acquired
+x-acquired-by: appen
+x-acquired-date: '2019-03'
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Ai
-apis: []
+- Machine Learning
+- Data Labeling
+- Data Annotation
+- Training Data
+- Human-in-the-Loop
+- Crowdsourcing
+- Acquired
+apis:
+- aid: figure-eight:figure-eight-account-info-api
+  name: Figure Eight Account Info API
+  description: Manage account info.
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Account Info
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-account-info-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-job-create-update-api
+  name: Figure Eight Job Create/Update API
+  description: Create and update jobs.
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Job Create/Update
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-job-create-update-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-job-ontology-api
+  name: Figure Eight Job Ontology API
+  description: Read and Update the Ontology for a job
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Job Ontology
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-job-ontology-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-job-results-api
+  name: Figure Eight Job Results API
+  description: Request rows, judgments, and reports.
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Job Results
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-job-results-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-job-status-api
+  name: Figure Eight Job Status API
+  description: Control job status.
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Job Status
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-job-status-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-manage-job-data-api
+  name: Figure Eight Manage Job Data API
+  description: Load data to jobs and work with that data.
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Manage Job Data
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-manage-job-data-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-manage-job-settings-api
+  name: Figure Eight Manage Job Settings API
+  description: Manage various job settings.
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Manage Job Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-manage-job-settings-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-monitor-contributors-api
+  name: Figure Eight Monitor Contributors API
+  description: Monitor contributor status and settings.
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Monitor Contributors
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-monitor-contributors-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-workflow-data-upload-download-api
+  name: Figure Eight Workflow Data Upload/Download API
+  description: Upload data to run through a Workflow. Download reports.
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Workflow Data Upload/Download
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-workflow-data-upload-download-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-workflow-filter-rules-api
+  name: Figure Eight Workflow Filter Rules API
+  description: Rules for routing data
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Workflow Filter Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-workflow-filter-rules-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-workflow-step-routes-api
+  name: Figure Eight Workflow Step Routes API
+  description: Manage Workflow Step Routes
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Workflow Step Routes
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-workflow-step-routes-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-workflow-steps-api
+  name: Figure Eight Workflow Steps API
+  description: Manage Workflow Steps
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Workflow Steps
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-workflow-steps-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
+- aid: figure-eight:figure-eight-workflows-api
+  name: Figure Eight Workflows API
+  description: Copy, launch, pause and resume workflows, check status and configuration values
+  humanURL: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+  baseURL: https://api.appen.com/v1
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/figure-eight-workflows-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/figure-eight-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DomainSecurity
+  url: security/figure-eight-domain-security.yml
+- type: APIReference
+  url: https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0
+- type: Documentation
+  url: http://crowdflower.github.io/CML/
+- type: GitHubOrganization
+  url: https://github.com/CrowdFlower
+- type: Packages
+  url: packages/figure-eight-packages.yml
+- type: SDKs
+  url: packages/figure-eight-packages.yml
+- type: Authentication
+  url: authentication/figure-eight-authentication.yml
+- type: Conventions
+  url: conventions/figure-eight-conventions.yml
+- type: ErrorCatalog
+  url: errors/figure-eight-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/figure-eight-lifecycle.yml
+- type: Conformance
+  url: conformance/figure-eight-conformance.yml
+- type: DataModel
+  url: data-model/figure-eight-data-model.yml
+- type: MCPServer
+  url: mcp/figure-eight-mcp.yml
+- type: LLMsTxt
+  url: llms/figure-eight-llms.txt
+- type: WellKnown
+  url: well-known/figure-eight-well-known.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

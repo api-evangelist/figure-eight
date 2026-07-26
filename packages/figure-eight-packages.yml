@@ -1,0 +1,34 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/CrowdFlower
+note: >-
+  Only the Ruby gem is first-party (published under the CrowdFlower GitHub org,
+  authored by co-founder Chris Van Pelt). The Python and Node clients are
+  community-maintained third-party wrappers. The Ruby repo is archived (last
+  pushed 2015) following the Appen acquisition.
+packages:
+- language: ruby
+  registry: rubygems
+  name: crowdflower
+  url: https://rubygems.org/gems/crowdflower
+  repo: https://github.com/CrowdFlower/ruby-crowdflower
+  install: gem install crowdflower
+  version: 0.12.0
+  official: true
+  archived: true
+- language: python
+  registry: pypi
+  name: crowdflower
+  url: https://pypi.org/project/crowdflower/
+  repo: https://github.com/peoplepattern/crowdflower
+  install: pip install crowdflower
+  version: 0.1.5
+  official: false
+- language: javascript
+  registry: npm
+  name: crowdflower
+  url: https://www.npmjs.com/package/crowdflower
+  repo: https://github.com/votizen/node-crowdflower
+  install: npm install crowdflower
+  version: 0.0.1
+  official: false

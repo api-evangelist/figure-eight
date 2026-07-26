@@ -1,0 +1,78 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/figure-eight-openapi-original.json
+note: >-
+  Entity-relationship graph derived from OpenAPI component schemas and their
+  id-reference fields.
+entities:
+- name: account
+  key: id
+  fields: [id, email, first_name, last_name, status, balance, api_team_id, job_template_id]
+- name: job
+  key: id
+  schema: new_job
+  fields: [id, title, judgments_per_unit, units_per_assignment, payment_cents, execution_mode, options]
+- name: unit
+  key: id
+  fields: [id, data, state, judgments_count, agreement, gold_pool, job_id]
+- name: workflow
+  key: id
+  schema: Workflow
+  fields: [id, team_id, user_id, name, status, steps]
+- name: workflow_step
+  key: id
+  schema: WorkflowStep
+  fields: [id, data_processor_id, data_processor_type, step_options, routes]
+- name: step_route
+  key: id
+  schema: StepRoute
+  fields: [id, workflow_step_id, destination_step_id, filter_rules]
+- name: filter_rule
+  key: id
+  schema: FilterRule
+  fields: [id, comparison_field, comparison_operation, comparison_value, rule_connector]
+- name: data_order
+  key: id
+  schema: DataOrder
+  fields: [id, data_upload_id, workflow_id, state]
+relationships:
+- from: unit
+  to: job
+  type: belongs_to
+  via: job_id
+- from: job
+  to: unit
+  type: has_many
+  via: job_id
+- from: workflow
+  to: workflow_step
+  type: has_many
+  via: steps
+- from: workflow_step
+  to: workflow
+  type: belongs_to
+  via: routes
+- from: step_route
+  to: workflow_step
+  type: belongs_to
+  via: workflow_step_id
+- from: step_route
+  to: workflow_step
+  type: has_one
+  via: destination_step_id
+- from: workflow_step
+  to: step_route
+  type: has_many
+  via: routes
+- from: filter_rule
+  to: step_route
+  type: belongs_to
+  via: filter_rules
+- from: step_route
+  to: filter_rule
+  type: has_many
+  via: filter_rules
+- from: data_order
+  to: workflow
+  type: belongs_to
+  via: workflow_id

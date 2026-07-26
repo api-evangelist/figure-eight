@@ -1,0 +1,38 @@
+{
+  "provider": "figure-eight",
+  "sources": [
+    "figure-eight-account-info-api-openapi.yml",
+    "figure-eight-job-create-update-api-openapi.yml",
+    "figure-eight-job-ontology-api-openapi.yml",
+    "figure-eight-job-results-api-openapi.yml",
+    "figure-eight-job-status-api-openapi.yml",
+    "figure-eight-manage-job-data-api-openapi.yml",
+    "figure-eight-manage-job-settings-api-openapi.yml",
+    "figure-eight-monitor-contributors-api-openapi.yml",
+    "figure-eight-workflow-data-upload-download-api-openapi.yml",
+    "figure-eight-workflow-filter-rules-api-openapi.yml",
+    "figure-eight-workflow-step-routes-api-openapi.yml",
+    "figure-eight-workflow-steps-api-openapi.yml",
+    "figure-eight-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "figure-eight-account-info-api-openapi.yml",
+    "figure-eight-job-create-update-api-openapi.yml",
+    "figure-eight-job-ontology-api-openapi.yml",
+    "figure-eight-job-results-api-openapi.yml",
+    "figure-eight-job-status-api-openapi.yml",
+    "figure-eight-manage-job-data-api-openapi.yml",
+    "figure-eight-manage-job-settings-api-openapi.yml",
+    "figure-eight-monitor-contributors-api-openapi.yml",
+    "figure-eight-workflow-data-upload-download-api-openapi.yml",
+    "figure-eight-workflow-filter-rules-api-openapi.yml",
+    "figure-eight-workflow-step-routes-api-openapi.yml",
+    "figure-eight-workflow-steps-api-openapi.yml",
+    "figure-eight-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
