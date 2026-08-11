@@ -212,6 +212,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/figure-eight-openapi-overlay.yaml
 - type: DomainSecurity
   url: security/figure-eight-domain-security.yml
 - type: APIReference
