@@ -1,0 +1,1022 @@
+{
+  "item": [
+    {
+      "id": "414bb3ee-7afb-4ea0-9b80-ddd9f01f7488",
+      "name": "Manage Job Settings",
+      "description": {
+        "content": "Manage various job settings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16c89a3f-5c3c-4436-9b4a-cf8dd2a54cf9",
+          "name": "Update a given job.",
+          "request": {
+            "name": "Update a given job.",
+            "description": {
+              "content": "Update various elements of a job. Your job must have a valid title,\ninstructions, and one \"required\" CML form element to be launched\nsuccessfully.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "{{job_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[title]",
+                  "value": "<string>",
+                  "description": "Updates the title of the Job."
+                },
+                {
+                  "disabled": false,
+                  "key": "job[instructions]",
+                  "value": "<string>",
+                  "description": "Updates the instructions of the Job."
+                },
+                {
+                  "disabled": false,
+                  "key": "job[cml]",
+                  "value": "<string>",
+                  "description": "Updates the CML of the Job."
+                },
+                {
+                  "disabled": false,
+                  "key": "job[css]",
+                  "value": "<string>",
+                  "description": "Updates the CSS of the Job."
+                },
+                {
+                  "disabled": false,
+                  "key": "job[payment_cents]",
+                  "value": "<integer>",
+                  "description": "Determines the amount, in cents, that Contributors will be paid per\nTask\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[judgments_per_unit]",
+                  "value": "<integer>",
+                  "description": "Unit in the refers to a single row in the job"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[quiz_length_configured]",
+                  "value": "<boolean>",
+                  "description": "True, for custom number of test questions in Quiz mode"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[quiz_length]",
+                  "value": "<integer>",
+                  "description": "Number of test questions in quiz"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[options][req_ttl_in_seconds]",
+                  "value": "<integer>",
+                  "description": "Set the amount of time per assignment. Default is set to 30 minutes."
+                },
+                {
+                  "disabled": false,
+                  "key": "job[units_per_assignment]",
+                  "value": "<integer>",
+                  "description": "Sets the number of Rows that will comprise one Page within a Job."
+                },
+                {
+                  "disabled": false,
+                  "key": "job[variable_judgments_mode]",
+                  "value": "<string>",
+                  "description": "Accepts \"none\" or \"auto_confidence\". Use in combination with\njob[options][confidence_fields], job[max_judgments_per_unit], and\njob[min_unit_confidence] to set dynamic judgments. More info\n[Job Launch > Job Settings > Guide to Dynamic Judgments](https://success.appen.com/hc/en-us/articles/203219205-Job-Settings-Guide-to-Dynamic-Judgments)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[options][confidence_fields]",
+                  "value": "<string>",
+                  "description": "CML form element name that determines row finalization for dynamic\njudgments. More info in the Success center at\n[Job Launch > Job Settings > Guide to Dynamic Judgments](https://success.appen.com/hc/en-us/articles/203219205-Job-Settings-Guide-to-Dynamic-Judgments)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[max_judgments_per_unit]",
+                  "value": "<integer>",
+                  "description": "Maximum number of judgments collected per row. More info in the Success center at\n[Job Launch > Job Settings > Guide to Dynamic Judgments](https://success.appen.com/hc/en-us/articles/203219205-Job-Settings-Guide-to-Dynamic-Judgments)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[min_unit_confidence]",
+                  "value": "<number>",
+                  "description": "Minimum confidence needed to finalize a row (a number from 0 to 1).\nMore info in the Success center at\n[Job Launch > Job Settings > Guide to: Dynamic Judgments](https://success.appen.com/hc/en-us/articles/203219205-Job-Settings-Guide-to-Dynamic-Judgments)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[auto_order]",
+                  "value": "<boolean>",
+                  "description": "Automatically launch rows as they are added to the Job"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[auto_order_timout]",
+                  "value": "<integer>",
+                  "description": "The time in seconds before automatic ordering of any new rows will\noccur. auto_order must be enabled.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[auto_order_threshold]",
+                  "value": "<integer>",
+                  "description": "The job must have at least this many new rows—or the timeout must\nhave passed—before new rows will be ordered automatically. This\nsetting must be greater than the number of rows per page minus the\nnumber of Test Questions shown per page. auto_order must be enabled.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[ignore_overlapping_names]",
+                  "value": "<string>",
+                  "description": "When enabling auto-order, you may encounter the following response message: \"You created column headers that duplicate the original uploaded column headers: 'example'. Please use unique column headers or allow duplicate column headers by adding the ignore_overlapping_names=true flag.\" Ignore_overlapping_names allows a job to be launched where a CML name duplicates a source column header.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[options][htl_report]",
+                  "value": "<boolean>",
+                  "description": "Toggle confidence summary"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[webhook_uri]",
+                  "value": "<string>",
+                  "description": "Add webhook URL"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[options][logical_aggregation]",
+                  "value": "<boolean>",
+                  "description": "Toggle logical aggregation"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[max_judgments_per_worker]",
+                  "value": "<integer>",
+                  "description": "Set max judgments per contributor"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[min_assignment_duration]",
+                  "value": "<integer>",
+                  "description": "Set minimum time per page (expressed as seconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[options][reject_at]",
+                  "value": "<integer>",
+                  "description": "Set minimum accuracy"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[units_remain_finalized]",
+                  "value": "<boolean>",
+                  "description": "Rows will not order new judgments once they are finalized, even if judgments become untrusted"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[schedule_fifo]",
+                  "value": "<boolean>",
+                  "description": "Schedule rows to collect judgments based on the order in which they were posted to the job"
+                },
+                {
+                  "disabled": false,
+                  "key": "job[included_countries]",
+                  "value": "<string>",
+                  "description": "A list of allowed country codes in ISO 3166 format (e.g. - [\"US\", \"GB\"]) designating countries where contributors are allowed to annotate. Only one of included_countries or excluded_countries can be set per Job. No more than 20 countries can be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "job[excluded_countries]",
+                  "value": "<string>",
+                  "description": "A list of forbidden country codes in ISO 3166 format (e.g. - [\"US\", \"GB\"]) designating countries where contributors are not allowed to annotate. Only one of included_countries or excluded_countries can be set per Job. No more than 15 countries can be excluded."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7778aa1-e649-4b1d-8edc-12703c8cd3f8",
+              "name": "OK. The request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "{{job_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[title]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[instructions]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[cml]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[css]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[payment_cents]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[judgments_per_unit]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[quiz_length_configured]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "job[quiz_length]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[options][req_ttl_in_seconds]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[units_per_assignment]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[variable_judgments_mode]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[options][confidence_fields]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[max_judgments_per_unit]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[min_unit_confidence]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "job[auto_order]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "job[auto_order_timout]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[auto_order_threshold]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[ignore_overlapping_names]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[options][htl_report]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "job[webhook_uri]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[options][logical_aggregation]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "job[max_judgments_per_worker]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[min_assignment_duration]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[options][reject_at]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "job[units_remain_finalized]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "job[schedule_fifo]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "job[included_countries]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "job[excluded_countries]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1234567,\n  \"options\": {},\n  \"title\": \"Select the animal types in the image.\",\n  \"secret\": \"aBcbdE01fgHijKL2mnopq3r45sTUVwxYzr6abCdeFg\",\n  \"project_number\": null,\n  \"alias\": null,\n  \"judgments_per_unit\": 3,\n  \"units_per_assignment\": 5,\n  \"pages_per_assignment\": 1,\n  \"max_judgments_per_worker\": null,\n  \"gold_per_assignment\": 1,\n  \"minimum_account_age_seconds\": null,\n  \"execution_mode\": \"worker_ui_remix\",\n  \"payment_cents\": 35,\n  \"design_verified\": false,\n  \"public_data\": false,\n  \"variable_judgments_mode\": \"none\",\n  \"max_judgments_per_unit\": null,\n  \"expected_judgments_per_unit\": null,\n  \"min_unit_confidence\": null,\n  \"units_remain_finalized\": false,\n  \"auto_order_timeout\": null,\n  \"auto_order_threshold\": 4,\n  \"completed_at\": null,\n  \"state\": \"unordered\",\n  \"auto_order\": false,\n  \"webhook_uri\": null,\n  \"send_judgments_webhook\": null,\n  \"language\": \"en\",\n  \"minimum_requirements\": null,\n  \"desired_requirements\": null,\n  \"team_id\": \"ac7b538f-2e25-403f-3681-f3848119d493\",\n  \"max_work_per_network\": null,\n  \"copied_from\": null,\n  \"assignment_duration\": 1800,\n  \"created_at\": \"1977-04-06T08:55:29.349Z\",\n  \"updated_at\": \"1950-12-02T18:27:30.807Z\",\n  \"included_countries\": null,\n  \"excluded_countries\": null,\n  \"instructions\": \"\",\n  \"cml\": \"<h2>Collect Information</h2>\\n<hr />\\n<cml:radios label=\\\"Some Question?\\\" validates=\\\"required\\\"\\nname=\\\"video_found\\\" gold=\\\"true\\\">\\n<cml:radio label=\\\"Yes\\\"></cml:radio>\\n<cml:radio label=\\\"No\\\"></cml:radio>\\n</cml:radios>\\n\",\n  \"js\": null,\n  \"css\": null,\n  \"confidence_fields\": null,\n  \"gold\": {},\n  \"units_count\": 0,\n  \"golds_count\": 0,\n  \"judgments_count\": 0,\n  \"support_email\": \"your.email@example-email.com\",\n  \"worker_ui_remix\": true,\n  \"crowd_costs\": 0,\n  \"quiz_mode_enabled\": false,\n  \"completed\": false,\n  \"fields\": null,\n  \"order_approved\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c61c959-dbed-4cbf-a9cf-a2d9935edf59",
+          "name": "View all job tags.",
+          "request": {
+            "name": "View all job tags.",
+            "description": {
+              "content": "View all tags in a job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8960be24-a10d-4d58-bd67-4f4b0316efe1",
+              "name": "JSON application message indicating status of the operation (e.g.,\n\"Unit was successfully created\")\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a80bb74-b451-4ff1-bad5-dc853f3794ca",
+          "name": "Add a job tag.",
+          "request": {
+            "name": "Add a job tag.",
+            "description": {
+              "content": "Add a new tag to a job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "(Required) Specify the name of a tag"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51c17ed0-ce6e-41b8-a185-5c8f296d29ae",
+              "name": "JSON application message indicating status of the operation (e.g.,\n\"Unit was successfully created\")\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37526a88-9049-4b8e-a139-1f6e39d58066",
+          "name": "Replace job tags.",
+          "request": {
+            "name": "Replace job tags.",
+            "description": {
+              "content": "Replace the tags in a job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "(Required) Specify the name of a tag. Accepts multiple tags, separate tags with\ncommas i.e. tag1, tag2, tag3, ..., tagn\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3f7074d-9265-44a4-a8cc-4c9e7dee3634",
+              "name": "JSON application message indicating status of the operation (e.g. 'Unit was successfully created')\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b6a6e9a-eff1-4a2f-8097-3d624486422b",
+          "name": "List of channels settings",
+          "request": {
+            "name": "List of channels settings",
+            "description": {
+              "content": "View all labor Channels via which the Job can be accessed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b17a71f2-928c-4c26-a64b-df9ac0a1e94c",
+              "name": "OK - List of available and enabled Channels",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"available_channels\": [\n    \"channelOne\",\n    \"channelTwo\"\n  ],\n  \"enabled_channels\": [\n    \"channelOne\"\n  ],\n  \"message\": \"Individual channel targeting will be deprecated soon. Please see the Appen API documentation for more info.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aff5525b-4dd1-460a-8d56-27d829ca4e7d",
+          "name": "Add a contributor channel to the job.",
+          "request": {
+            "name": "Add a contributor channel to the job.",
+            "description": {
+              "content": "Add a **Channel** via which the **Job** can be accessed and worked on by **Contributors**. \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel_id",
+                  "value": "<string>",
+                  "description": "(Required) A unique identifier for a group of contributors. Variable name: `{channel_id}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b23be5ad-d175-406f-974c-d41eb6dc40e4",
+              "name": "OK - List of available and enabled channels.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channel_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"available_channels\": [\n    \"channelOne\",\n    \"channelTwo\"\n  ],\n  \"enabled_channels\": [\n    \"channelOne\"\n  ],\n  \"message\": \"Individual channel targeting will be deprecated soon. Please see the Appen API documentation for more info.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10e50a1e-7d5d-45ce-a244-6c42568cd412",
+          "name": "Disconnect a channel from the job.",
+          "request": {
+            "name": "Disconnect a channel from the job.",
+            "description": {
+              "content": "Remove a channel via which the job can be accessed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "disable_channel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "channel_id",
+                  "value": "<string>",
+                  "description": "(Required) A unique identifier for a group of contributors. Variable name: `{channel_id}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80e5bb69-8ff5-401f-a739-3fd16dd89e5d",
+              "name": "OK - List of available and enabled channels.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "disable_channel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channel_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"available_channels\": [\n    \"channelOne\",\n    \"channelTwo\"\n  ],\n  \"enabled_channels\": [\n    \"channelOne\"\n  ],\n  \"message\": \"Individual channel targeting will be deprecated soon. Please see the Appen API documentation for more info.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.appen.com/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<long>",
+      "key": "job_id"
+    }
+  ],
+  "info": {
+    "_postman_id": "d960ef4a-709e-4747-afae-e19a3d39074e",
+    "name": "Appen Platform Account Info Manage Job Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nHello, and welcome to Appen, the leading data annotation platform for Machine Learning. Our API enables developers to build applications that can programmatically create, edit, and launch Appen jobs, download results, and more! \n\nAppen uses a RESTful API that accepts data requests as URL-encoded key-value pairs. Responses are returned in JSON and authentication is key-based.\n\nBefore integrating with the API, we highly recommend you first build and run a job using our [graphical user interface](https://client.appen.com/sessions/new). Once you have run a job successfully and are satisfied with the results, you can automate the process using the Appen API.\n\n# Authentication\nYou will need to supply your Appen API key to access the API. To find your API key:\n1. Click the Account button located in the bottom corner of the Global Navigation bar on the left side of any page.\n![Appen Authentication](/assets/img/authentication1.png \"Appen Authentication\")\n2. Click the API tab and find your key listed under the Your API Key section. \n![Appen API](/assets/img/authentication2.png \"Appen API key\")\n\nFor requests listed below, the API Key will be listed as `{api_key}`. \n\nThe API key needs to be included in the header for every request: \n```\n  headers: { \n\n   \"AUTHORIZATION\" => \"Token token={api_key}\" \n\n  } \n```\n\nYou may also see other variables, such as `{job_id}` for operations pertaining to a specific job, or `{team_id}` when completing operations relevant to an entire team (like listing all available jobs). Job ID's can be determined from the job listing page or the URL. A team id is visible in the URL of the Teams tab in the Account page. \n# Resources\nThere are three primary data objects on Appen that correspond to resources on the API:\n## Jobs\nA **Job** is an interface that connects your data to an online workforce.\n  Each job on the Appen platform has data, instructions, customizable questions for your use case\n  (written in **CML** [](https://success.appen.com/hc/en-us/articles/202817989-CML-Custom-Markup-Language-Overview)),\n  [test questions](https://success.appen.com/hc/en-us/articles/202702985-How-to-Create-Test-Questions),\n  and is worked on by *Contributors*. Contributors submit *Judgments* on the rows of data via a worker interface. \n    * All jobs in a single account can be found [on your jobs page](https://client.appen.com/jobs) and will be\n    identified by a unique numeric id.\n## Units (also known as 'Rows')\nA **Unit** of data is uploaded to the job from your source data file via API or GUI. \n## Judgments \nA **Judgment** is the set of responses submitted by a contributor on a particular unit of data. It is\n  recommended to collect multiple judgments and compare them to one another or aggregate to the top response. For\n  each job, you can specify the number of judgments you would like each row to receive.\n# Responses and Messaging\nEach request to the Appen API returns an HTTP status code response and one or both of the following:\n* An application response message (in JSON) \n* A JSON representation of the object (job, unit, or judgments) requested\nSee the below sections of different API Requests, Responses and Messaging for more information:\n1. [Job Create/Update](/#tag/Job-CreateUpdate)\n2. [Manage Job Data](/#tag/Manage-Job-Data)\n3. [Job Status](/#tag/Job-Status)\n4. [Monitor Contributors](/#tag/Monitor-Contributors)\n5. [Manage Job Settings](/#tag/Manage-Job-Settings)\n6. [Job Results](/#tag/Job-Results)\n7. [Account Info](/#tag/Account-Info)\n\n\nContact Support:\n Email: help@appen.com",
+      "type": "text/plain"
+    }
+  }
+}

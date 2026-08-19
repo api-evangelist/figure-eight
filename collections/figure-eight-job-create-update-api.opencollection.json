@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Job Create/Update API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job Create/Update",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new Job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs.json",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "**With no request body** - Creates a new Job with a Job ID—but without data, title, instructions, or other settings values.\n\n**With optional params** - Creates a new Job with Job ID, Title, CML, and Instructions.\n\n**See also:** [`POST /jobs/upload.json`](/#tag/Job-CreateUpdate/paths/~1jobs~1upload.json/post)\n"
+        },
+        {
+          "info": {
+            "name": "Create a new job by uploading unit data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/upload.json",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Creates a new Job and uploads rows comprised of the JSON or CSV data in\nthe request. Note that this request invokes the upload operation.\n"
+        },
+        {
+          "info": {
+            "name": "Copy the settings and data (optional) for a job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/copy.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "all_units",
+                "value": "",
+                "type": "query",
+                "description": "All Rows and settings are copied."
+              },
+              {
+                "name": "gold",
+                "value": "",
+                "type": "query",
+                "description": "Copies the job identified by the job_id parameter of the request\nwith only its test-question rows. All settings are copied.\n"
+              }
+            ]
+          },
+          "docs": "Copies the Job identified by the `job_id` parameter of the request to a\nnew Job, with a new ID. If `all_units` or `gold` are not specified, then\nonly the job structure is copied (i.e. title, options, instructions and\ncml, etc.)\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

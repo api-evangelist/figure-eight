@@ -1,0 +1,385 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Manage Job Settings API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage Job Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update a given job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "job[title]",
+                "value": "",
+                "type": "query",
+                "description": "Updates the title of the Job."
+              },
+              {
+                "name": "job[instructions]",
+                "value": "",
+                "type": "query",
+                "description": "Updates the instructions of the Job."
+              },
+              {
+                "name": "job[cml]",
+                "value": "",
+                "type": "query",
+                "description": "Updates the CML of the Job."
+              },
+              {
+                "name": "job[css]",
+                "value": "",
+                "type": "query",
+                "description": "Updates the CSS of the Job."
+              },
+              {
+                "name": "job[payment_cents]",
+                "value": "",
+                "type": "query",
+                "description": "Determines the amount, in cents, that Contributors will be paid per\nTask\n"
+              },
+              {
+                "name": "job[judgments_per_unit]",
+                "value": "",
+                "type": "query",
+                "description": "Unit in the refers to a single row in the job"
+              },
+              {
+                "name": "job[quiz_length_configured]",
+                "value": "",
+                "type": "query",
+                "description": "True, for custom number of test questions in Quiz mode"
+              },
+              {
+                "name": "job[quiz_length]",
+                "value": "",
+                "type": "query",
+                "description": "Number of test questions in quiz"
+              },
+              {
+                "name": "job[options][req_ttl_in_seconds]",
+                "value": "",
+                "type": "query",
+                "description": "Set the amount of time per assignment. Default is set to 30 minutes."
+              },
+              {
+                "name": "job[units_per_assignment]",
+                "value": "",
+                "type": "query",
+                "description": "Sets the number of Rows that will comprise one Page within a Job."
+              },
+              {
+                "name": "job[variable_judgments_mode]",
+                "value": "",
+                "type": "query",
+                "description": "Accepts \"none\" or \"auto_confidence\". Use in combination with\njob[options][confidence_fields], job[max_judgments_per_unit], and\njob[min_unit_confidence] to set dynamic judgments. More info\n[Job Launch > Job Settings > Guide to Dynamic Judgments](https://success.appen.com/hc/en-us/articles/203219205-Job-Settings-Guide-to-Dynamic-Judgments)\n"
+              },
+              {
+                "name": "job[options][confidence_fields]",
+                "value": "",
+                "type": "query",
+                "description": "CML form element name that determines row finalization for dynamic\njudgments. More info in the Success center at\n[Job Launch > Job Settings > Guide to Dynamic Judgments](https://success.appen.com/hc/en-us/articles/203219205-Job-Settings-Guide-to-Dynamic-Judgments)\n"
+              },
+              {
+                "name": "job[max_judgments_per_unit]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of judgments collected per row. More info in the Success center at\n[Job Launch > Job Settings > Guide to Dynamic Judgments](https://success.appen.com/hc/en-us/articles/203219205-Job-Settings-Guide-to-Dynamic-Judgments)\n"
+              },
+              {
+                "name": "job[min_unit_confidence]",
+                "value": "",
+                "type": "query",
+                "description": "Minimum confidence needed to finalize a row (a number from 0 to 1).\nMore info in the Success center at\n[Job Launch > Job Settings > Guide to: Dynamic Judgments](https://success.appen.com/hc/en-us/articles/203219205-Job-Settings-Guide-to-Dynamic-Judgments)\n"
+              },
+              {
+                "name": "job[auto_order]",
+                "value": "",
+                "type": "query",
+                "description": "Automatically launch rows as they are added to the Job"
+              },
+              {
+                "name": "job[auto_order_timout]",
+                "value": "",
+                "type": "query",
+                "description": "The time in seconds before automatic ordering of any new rows will\noccur. auto_order must be enabled.\n"
+              },
+              {
+                "name": "job[auto_order_threshold]",
+                "value": "",
+                "type": "query",
+                "description": "The job must have at least this many new rows—or the timeout must\nhave passed—before new rows will be ordered automatically. This\nsetting must be greater than the number of rows per page minus the\nnumber of Test Questions shown per page. auto_order must be enabled.\n"
+              },
+              {
+                "name": "job[ignore_overlapping_names]",
+                "value": "",
+                "type": "query",
+                "description": "When enabling auto-order, you may encounter the following response message: \"You created column headers that duplicate the original uploaded column headers: 'example'. Please use unique column headers or allow duplicate column headers by adding the ignore_overlapping_names=true flag.\" Ignore_overlapping_names allows a job to be launched where a CML name duplicates a source column header.\n"
+              },
+              {
+                "name": "job[options][htl_report]",
+                "value": "",
+                "type": "query",
+                "description": "Toggle confidence summary"
+              },
+              {
+                "name": "job[webhook_uri]",
+                "value": "",
+                "type": "query",
+                "description": "Add webhook URL"
+              },
+              {
+                "name": "job[options][logical_aggregation]",
+                "value": "",
+                "type": "query",
+                "description": "Toggle logical aggregation"
+              },
+              {
+                "name": "job[max_judgments_per_worker]",
+                "value": "",
+                "type": "query",
+                "description": "Set max judgments per contributor"
+              },
+              {
+                "name": "job[min_assignment_duration]",
+                "value": "",
+                "type": "query",
+                "description": "Set minimum time per page (expressed as seconds)"
+              },
+              {
+                "name": "job[options][reject_at]",
+                "value": "",
+                "type": "query",
+                "description": "Set minimum accuracy"
+              },
+              {
+                "name": "job[units_remain_finalized]",
+                "value": "",
+                "type": "query",
+                "description": "Rows will not order new judgments once they are finalized, even if judgments become untrusted"
+              },
+              {
+                "name": "job[schedule_fifo]",
+                "value": "",
+                "type": "query",
+                "description": "Schedule rows to collect judgments based on the order in which they were posted to the job"
+              },
+              {
+                "name": "job[included_countries]",
+                "value": "",
+                "type": "query",
+                "description": "A list of allowed country codes in ISO 3166 format (e.g. - [\"US\", \"GB\"]) designating countries where contributors are allowed to annotate. Only one of included_countries or excluded_countries can be set per Job. No more than 20 countries can be included."
+              },
+              {
+                "name": "job[excluded_countries]",
+                "value": "",
+                "type": "query",
+                "description": "A list of forbidden country codes in ISO 3166 format (e.g. - [\"US\", \"GB\"]) designating countries where contributors are not allowed to annotate. Only one of included_countries or excluded_countries can be set per Job. No more than 15 countries can be excluded."
+              }
+            ]
+          },
+          "docs": "Update various elements of a job. Your job must have a valid title,\ninstructions, and one \"required\" CML form element to be launched\nsuccessfully.\n"
+        },
+        {
+          "info": {
+            "name": "View all job tags.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/tags",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "View all tags in a job."
+        },
+        {
+          "info": {
+            "name": "Add a job tag.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id/tags",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Specify the name of a tag"
+              }
+            ]
+          },
+          "docs": "Add a new tag to a job"
+        },
+        {
+          "info": {
+            "name": "Replace job tags.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id/tags",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Specify the name of a tag. Accepts multiple tags, separate tags with\ncommas i.e. tag1, tag2, tag3, ..., tagn\n"
+              }
+            ]
+          },
+          "docs": "Replace the tags in a job"
+        },
+        {
+          "info": {
+            "name": "List of channels settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/channels",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "View all labor Channels via which the Job can be accessed."
+        },
+        {
+          "info": {
+            "name": "Add a contributor channel to the job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id/channels",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "A unique identifier for a group of contributors. Variable name: `{channel_id}`. \n"
+              }
+            ]
+          },
+          "docs": "Add a **Channel** via which the **Job** can be accessed and worked on by **Contributors**. \n"
+        },
+        {
+          "info": {
+            "name": "Disconnect a channel from the job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id/disable_channel",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "A unique identifier for a group of contributors. Variable name: `{channel_id}`. \n"
+              }
+            ]
+          },
+          "docs": "Remove a channel via which the job can be accessed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

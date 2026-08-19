@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Monitor Contributors API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitor Contributors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Pay a contributor bonus.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id/workers/:contributor_id/bonus.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "contributor_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for an individual contributor who provides judgements (annotations) on units. Variable name: `{contributor_id}`. \n"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "A USD value specified in cents i.e. $5.00 == `amount=500`"
+              }
+            ]
+          },
+          "docs": "Pay a Contributor Bonus. Deposits bonus payment amount specified in the\nrequest into the indicated Contributor's account. Corresponds to Award\nBonus button in the UI.\n"
+        },
+        {
+          "info": {
+            "name": "Send a message to a contributor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id/workers/:contributor_id/notify.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "contributor_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for an individual contributor who provides judgements (annotations) on units. Variable name: `{contributor_id}`. \n"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Notify a Contributor. Notifies a Contributor with the message provided\nin the request.  The notification appears in the Contributor's\ndashboard. Corresponds to the Notify Contributor button showns in the\nUI.\n"
+        },
+        {
+          "info": {
+            "name": "Control contributor flags.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id/workers/:contributor_id.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "contributor_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for an individual contributor who provides judgements (annotations) on units. Variable name: `{contributor_id}`. \n"
+              },
+              {
+                "name": "flag",
+                "value": "",
+                "type": "query",
+                "description": "Flags a contributor with the reason indicated in the request.\nCorresponds to the Flag button on the Contributors page.\n"
+              },
+              {
+                "name": "unflag",
+                "value": "",
+                "type": "query",
+                "description": "Unflags a contributor with the reason indicated in the request"
+              },
+              {
+                "name": "persist",
+                "value": "",
+                "type": "query",
+                "description": "Flags a contributor with the reason indicated in the request across\nall jobs for a user. Corresponds to the Flag button on the\nContributors page.\n"
+              }
+            ]
+          },
+          "docs": "Flag and unflag contributors on a job"
+        },
+        {
+          "info": {
+            "name": "Reject a contributor.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id/workers/:contributor_id/reject.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "contributor_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for an individual contributor who provides judgements (annotations) on units. Variable name: `{contributor_id}`. \n"
+              },
+              {
+                "name": "reason",
+                "value": "",
+                "type": "query",
+                "description": "Flags a contributor with the reason indicated in the request.\nCorresponds to the Flag button on the Contributors page.\n"
+              },
+              {
+                "name": "manual",
+                "value": "",
+                "type": "query",
+                "description": "Set to \"true\" for the reject to work..."
+              }
+            ]
+          },
+          "docs": "Rejects a contributor with the reason indicated in the request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

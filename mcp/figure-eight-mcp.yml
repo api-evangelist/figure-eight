@@ -2,11 +2,9 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: openapi/figure-eight-openapi-original.json
-note: >-
-  No official hosted/remote MCP server was found for Figure Eight (the company
-  was absorbed into Appen). This is a candidate tool list derived from the
-  OpenAPI operations; the spec declares no operationIds, so tools are named from
-  HTTP method + path.
+note: No official hosted/remote MCP server was found for Figure Eight (the company was absorbed into Appen).
+  This is a candidate tool list derived from the OpenAPI operations; the spec declares no operationIds,
+  so tools are named from HTTP method + path.
 server:
   name: figure-eight
   transport: http
@@ -59,3 +57,9 @@ tools:
 - name: poll_workflow
   description: Poll the current state and metadata for a workflow.
   source_operation: openapi/figure-eight-openapi-original.json#GET /workflows/{workflow_id}/poll
+deployment:
+  mode: none
+  verified: derived
+  tools: 16
+  checked: '2026-08-12'
+  source: catalog MCP census

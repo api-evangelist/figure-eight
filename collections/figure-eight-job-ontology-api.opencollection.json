@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Job Ontology API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job Ontology",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Job Ontology",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/ontology",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Get the Ontology from a Job in JSON format."
+        },
+        {
+          "info": {
+            "name": "Update Job Ontology",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id/ontology",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the Ontology for a Job. If the Ontology doesn't exist then a new Ontology\nis created. (Note: Not all Job types accept a JSON formatted Ontology, please\nrefer to the [documentation](https://success.appen.com/hc/en-us/articles/360015150252-Guide-To-Ontology-Manager?mobile_site=false)\nfor more information).\n"
+        },
+        {
+          "info": {
+            "name": "Get Job Ontology (CSV)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/ontology.csv",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Get the Ontology from a Job in CSV format."
+        },
+        {
+          "info": {
+            "name": "Update Job Ontology (CSV)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id/ontology.csv",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Update the Ontology for a Job. If the Ontology doesn't exist then a new Ontology\nis created. (Note: Not all Job types accept a CSV formatted Ontology, please\nrefer to the [documentation](https://success.appen.com/hc/en-us/articles/360015150252-Guide-To-Ontology-Manager?mobile_site=false)\nfor more information).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

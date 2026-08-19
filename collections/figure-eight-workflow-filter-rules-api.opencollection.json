@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Workflow Filter Rules API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Filter Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "View the list of filter rules associated with a Route.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/step_routes/:route_id/filter_rules",
+            "params": [
+              {
+                "name": "route_id",
+                "value": "3456",
+                "type": "path",
+                "description": "Step Route database ID"
+              }
+            ]
+          },
+          "docs": "Displays a list of filter rules for a particular Route within a Workflow."
+        },
+        {
+          "info": {
+            "name": "Create a FilterRule for the step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/step_routes/:route_id/filter_rules",
+            "params": [
+              {
+                "name": "route_id",
+                "value": "3456",
+                "type": "path",
+                "description": "Step Route database ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a configuration object for filtering data moving between steps. FilterRules determine whether the output of a step is qualified for forwarding to a destination step.\nThink of the `route` as a _pipe_ between the steps' input and output 'pools' and the filter rule as filter that only allows data \"particles\" of a certain size or shape through."
+        },
+        {
+          "info": {
+            "name": "Update a Rule associated with a Route.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.appen.com/v1/step_routes/:route_id/filter_rules/:rule_id",
+            "params": [
+              {
+                "name": "route_id",
+                "value": "3456",
+                "type": "path",
+                "description": "Step Route database ID"
+              },
+              {
+                "name": "rule_id",
+                "value": "4567",
+                "type": "path",
+                "description": "Filter Rule database ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the **FilterRule** record that configures some or all of the filtering of data between two **Steps**."
+        },
+        {
+          "info": {
+            "name": "Delete a rule associated with a Route.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.appen.com/v1/step_routes/:route_id/filter_rules/:rule_id",
+            "params": [
+              {
+                "name": "route_id",
+                "value": "3456",
+                "type": "path",
+                "description": "Step Route database ID"
+              },
+              {
+                "name": "rule_id",
+                "value": "4567",
+                "type": "path",
+                "description": "Filter Rule database ID"
+              }
+            ]
+          },
+          "docs": "Delete the **FilterRule** record that configures some or all of the filtering of data between two **Steps**."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

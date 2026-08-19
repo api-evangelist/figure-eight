@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Job Results API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get data for a Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/units/:unit_id.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "unit_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+              }
+            ]
+          },
+          "docs": "Get source data, all judgments and aggregate result for a specified\nrow.\n"
+        },
+        {
+          "info": {
+            "name": "Regenerate a job report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id/regenerate.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the type of report to generate or download, valid values include:\n- **full** - Returns the Full report containing every judgment.\n- **aggregated** - Returns the Aggregated report containing the aggregated response for each row.\n- **json** - Returns the JSON report containing the aggregated response, as well as the individual judgments.\n- **gold_report** - Returns the Test Question report.\n- **workset** - Returns the Contributor report.\n- **source** - Returns a CSV of the source data uploaded to the job.\n"
+              }
+            ]
+          },
+          "docs": "Regenerate a report of job output. See below for available report types. \n"
+        },
+        {
+          "info": {
+            "name": "Download a job report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id.csv",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the type of report to generate or download, valid values include:\n- **full** - Returns the Full report containing every judgment.\n- **aggregated** - Returns the Aggregated report containing the aggregated response for each row.\n- **json** - Returns the JSON report containing the aggregated response, as well as the individual judgments.\n- **gold_report** - Returns the Test Question report.\n- **workset** - Returns the Contributor report.\n- **source** - Returns a CSV of the source data uploaded to the job.\n"
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "query",
+                "description": "Name the output file"
+              }
+            ]
+          },
+          "docs": "Download a report from a job."
+        },
+        {
+          "info": {
+            "name": "Get all judgments w/aggregated responses.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/units/:unit_id/judgments.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "unit_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+              }
+            ]
+          },
+          "docs": "Get all judgments and aggregated responses per row"
+        },
+        {
+          "info": {
+            "name": "Get rows with judgments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/judgments.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get rows and their judgments"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

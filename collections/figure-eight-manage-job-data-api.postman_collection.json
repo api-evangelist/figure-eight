@@ -1,0 +1,1279 @@
+{
+  "item": [
+    {
+      "id": "374280a5-9333-4d2d-830e-b53de552d967",
+      "name": "Manage Job Data",
+      "description": {
+        "content": "Load data to jobs and work with that data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ce23a82-eb55-4569-bce4-6706dc421838",
+          "name": "Upload data to an existing job",
+          "request": {
+            "name": "Upload data to an existing job",
+            "description": {
+              "content": "Upload data to an existing job. Data may be uploaded in JSON or CSV format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "upload.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "The  request fails when the fields in the data uploaded _do not\nmatch_ the fields already present in the job. To override this\nvalidation and force upload data, use the query parameter\n`force=true`.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "0",
+                  "value": "<",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "1",
+                  "value": "b",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "2",
+                  "value": "i",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "3",
+                  "value": "n",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "4",
+                  "value": "a",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "5",
+                  "value": "r",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "6",
+                  "value": "y",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "7",
+                  "value": ">",
+                  "type": "text",
+                  "description": "undefined"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "400b35e0-8547-4abc-9f97-5965c07d8775",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "upload.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "<",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "b",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "2",
+                      "value": "i",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "3",
+                      "value": "n",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "4",
+                      "value": "a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "5",
+                      "value": "r",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "6",
+                      "value": "y",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "7",
+                      "value": ">",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4c669b1-2a86-4d87-8222-1c28f20737b6",
+              "name": "Not Found. The resource you are referencing does not exist, or you don''t own it.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "upload.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "<",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "b",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "2",
+                      "value": "i",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "3",
+                      "value": "n",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "4",
+                      "value": "a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "5",
+                      "value": "r",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "6",
+                      "value": "y",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "7",
+                      "value": ">",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54a45a0c-e714-40ce-9743-f7b0b3c46e6e",
+          "name": "Paginated list of Units in Job",
+          "request": {
+            "name": "Paginated list of Units in Job",
+            "description": {
+              "content": "Gets **Units** for the **Job** identified by the `job_id` parameter of\nthe request. Defaults to 1000 Units per page, in order to get the next\n1000 rows, you must increment the value of `page`. Keep doing so until\nan empty hash is returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "units.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A desired page of paginated results to return. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91f2482f-d633-412f-b320-a99803f9c068",
+              "name": "Displays 1000 units at a time.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "units.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7dd52f14-df72-4cc9-98cd-549e42390673",
+          "name": "Add Unit(s) to job",
+          "request": {
+            "name": "Add Unit(s) to job",
+            "description": {
+              "content": "Creates a new Row in an existing Job. This is the request format and endpoint to use for unit-by-unit posting. This endpoint cannot add multiple units in a single request.\n\n*Note:* test questions can also be uploaded using this endpoint. First, upload units that have a field `_golden=true`, then use the [Convert uploaded test questions](#tag/Manage-Job-Data/paths/~1jobs~1{job_id}~1gold.json/put) endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "units.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit[data][{column1,2,3...x}]",
+                  "value": "<string>",
+                  "description": "Accepts multiple columns, and individual data strings per column"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit[data][column1,2,...x_gold]",
+                  "value": "<string>",
+                  "description": "Accepts multiple columns, and individual data strings per column"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit[data][_golden]",
+                  "value": "<boolean>",
+                  "description": "TBD"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5dc2562f-4301-4c13-9a0e-51c8dca9e863",
+              "name": "JSON object of the row created, including its id, data, and related\nJob id. JSON application message indicating status of the operation\n(e.g., Unit was successfully created)\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "units.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit[data][{column1,2,3...x}]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit[data][column1,2,...x_gold]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit[data][_golden]",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1234,\n  \"data\": {},\n  \"judgments_count\": 6505,\n  \"state\": \"judging\",\n  \"agreement\": 3252.96,\n  \"missed_count\": 223,\n  \"contested_count\": 6491,\n  \"gold_pool\": \"string\",\n  \"created_at\": \"2003-05-22T01:05:34.904Z\",\n  \"updated_at\": \"1970-10-25T23:47:40.628Z\",\n  \"job_id\": 425765\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55e4152b-eb96-4075-bb9b-80afbae152f6",
+          "name": "Change unit state.",
+          "request": {
+            "name": "Change unit state.",
+            "description": {
+              "content": "Update `state` for specific units on a job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "units",
+                "{{unit_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit[state]",
+                  "value": "<string>",
+                  "description": "Changes the state (e.g., new, golden, finalized, canceled,\nhidden_gold) of the Row specified in the request\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1c42be8-c90c-41c5-9b16-abb0fd467ec0",
+              "name": "JSON object comprising Judgment count, Row state, and timestamp values.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "units",
+                    "{{unit_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit[state]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1234,\n    \"data\": {},\n    \"judgments_count\": 5922,\n    \"state\": \"judging\",\n    \"agreement\": 4002.87,\n    \"missed_count\": 5116,\n    \"contested_count\": 3103,\n    \"gold_pool\": \"string\",\n    \"created_at\": \"1957-02-10T03:49:06.180Z\",\n    \"updated_at\": \"2023-07-11T03:02:24.408Z\",\n    \"job_id\": 425765\n  },\n  {\n    \"id\": 1234,\n    \"data\": {},\n    \"judgments_count\": 3899,\n    \"state\": \"canceled\",\n    \"agreement\": 6976.81,\n    \"missed_count\": 2200,\n    \"contested_count\": 1074,\n    \"gold_pool\": \"string\",\n    \"created_at\": \"1972-09-13T10:50:46.892Z\",\n    \"updated_at\": \"2002-05-24T04:32:12.410Z\",\n    \"job_id\": 425765\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "532500c9-6cf0-45df-a373-b40c13d31da5",
+          "name": "Delete a unit",
+          "request": {
+            "name": "Delete a unit",
+            "description": {
+              "content": "Delete a unit if the job state and unit state are valid for deletion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "units",
+                "{{unit_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bf458f0-519a-498c-994f-5b6416510fd7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "units",
+                    "{{unit_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"success\": \"Unit {unit_id} has been deleted.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "176fbf13-c8ec-44d3-9b51-44bba1c5a1a2",
+          "name": "Cancel a unit.",
+          "request": {
+            "name": "Cancel a unit.",
+            "description": {
+              "content": "Will cancel a unit in state New or Judgable if the row has not collected any judgments yet.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "units",
+                ":unit_id",
+                "cancel.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "unit_id",
+                  "description": "(Required) A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "001a9977-9750-47ef-bc29-2f196e8466b2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "units",
+                    ":unit_id",
+                    "cancel.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "unit_id",
+                      "description": "(Required) A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"Unit {unit_id} has been canceled.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c2db554-b6d3-4358-83b9-5f0ff8a920bd",
+          "name": "Convert uploaded test questions.",
+          "request": {
+            "name": "Convert uploaded test questions.",
+            "description": {
+              "content": "Corresponds to the \"Convert Uploaded Test Questions\" button on the Job's DATA page.\nAll units where `_golden` is set to `true` will be converted to test questions.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "gold.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "831bdcd5-6811-46ce-91c7-4da354ed3e23",
+              "name": "Test Question Rows in the specified Job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "gold.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1234,\n  \"data\": {},\n  \"judgments_count\": 6505,\n  \"state\": \"judging\",\n  \"agreement\": 3252.96,\n  \"missed_count\": 223,\n  \"contested_count\": 6491,\n  \"gold_pool\": \"string\",\n  \"created_at\": \"2003-05-22T01:05:34.904Z\",\n  \"updated_at\": \"1970-10-25T23:47:40.628Z\",\n  \"job_id\": 425765\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cef1057e-d5be-4080-bc5e-5915f846c7c7",
+          "name": "Get all test question units.",
+          "request": {
+            "name": "Get all test question units.",
+            "description": {
+              "content": "Get all test question units.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "test_questions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e80dff17-9aab-44cb-8be2-31fe3374e671",
+              "name": "Test Question Rows in the specified Job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "test_questions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1234,\n  \"data\": {},\n  \"judgments_count\": 6505,\n  \"state\": \"judging\",\n  \"agreement\": 3252.96,\n  \"missed_count\": 223,\n  \"contested_count\": 6491,\n  \"gold_pool\": \"string\",\n  \"created_at\": \"2003-05-22T01:05:34.904Z\",\n  \"updated_at\": \"1970-10-25T23:47:40.628Z\",\n  \"job_id\": 425765\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d872734-1291-4b6c-9b0c-ed3f8c52eec9",
+          "name": "Get count of all rows in a job.",
+          "request": {
+            "name": "Get count of all rows in a job.",
+            "description": {
+              "content": "Get count of all rows in a job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":job_id",
+                "units",
+                "ping.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "job_id",
+                  "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34abe48c-9a99-41a6-b7cd-de6de67ab9f2",
+              "name": "JSON object containing count of Rows in Job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":job_id",
+                    "units",
+                    "ping.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "job_id",
+                      "description": "(Required) A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.appen.com/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "unit_id"
+    }
+  ],
+  "info": {
+    "_postman_id": "cf6ec4ee-1d46-4e88-8d7a-be827293da97",
+    "name": "Appen Platform Account Info Manage Job Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nHello, and welcome to Appen, the leading data annotation platform for Machine Learning. Our API enables developers to build applications that can programmatically create, edit, and launch Appen jobs, download results, and more! \n\nAppen uses a RESTful API that accepts data requests as URL-encoded key-value pairs. Responses are returned in JSON and authentication is key-based.\n\nBefore integrating with the API, we highly recommend you first build and run a job using our [graphical user interface](https://client.appen.com/sessions/new). Once you have run a job successfully and are satisfied with the results, you can automate the process using the Appen API.\n\n# Authentication\nYou will need to supply your Appen API key to access the API. To find your API key:\n1. Click the Account button located in the bottom corner of the Global Navigation bar on the left side of any page.\n![Appen Authentication](/assets/img/authentication1.png \"Appen Authentication\")\n2. Click the API tab and find your key listed under the Your API Key section. \n![Appen API](/assets/img/authentication2.png \"Appen API key\")\n\nFor requests listed below, the API Key will be listed as `{api_key}`. \n\nThe API key needs to be included in the header for every request: \n```\n  headers: { \n\n   \"AUTHORIZATION\" => \"Token token={api_key}\" \n\n  } \n```\n\nYou may also see other variables, such as `{job_id}` for operations pertaining to a specific job, or `{team_id}` when completing operations relevant to an entire team (like listing all available jobs). Job ID's can be determined from the job listing page or the URL. A team id is visible in the URL of the Teams tab in the Account page. \n# Resources\nThere are three primary data objects on Appen that correspond to resources on the API:\n## Jobs\nA **Job** is an interface that connects your data to an online workforce.\n  Each job on the Appen platform has data, instructions, customizable questions for your use case\n  (written in **CML** [](https://success.appen.com/hc/en-us/articles/202817989-CML-Custom-Markup-Language-Overview)),\n  [test questions](https://success.appen.com/hc/en-us/articles/202702985-How-to-Create-Test-Questions),\n  and is worked on by *Contributors*. Contributors submit *Judgments* on the rows of data via a worker interface. \n    * All jobs in a single account can be found [on your jobs page](https://client.appen.com/jobs) and will be\n    identified by a unique numeric id.\n## Units (also known as 'Rows')\nA **Unit** of data is uploaded to the job from your source data file via API or GUI. \n## Judgments \nA **Judgment** is the set of responses submitted by a contributor on a particular unit of data. It is\n  recommended to collect multiple judgments and compare them to one another or aggregate to the top response. For\n  each job, you can specify the number of judgments you would like each row to receive.\n# Responses and Messaging\nEach request to the Appen API returns an HTTP status code response and one or both of the following:\n* An application response message (in JSON) \n* A JSON representation of the object (job, unit, or judgments) requested\nSee the below sections of different API Requests, Responses and Messaging for more information:\n1. [Job Create/Update](/#tag/Job-CreateUpdate)\n2. [Manage Job Data](/#tag/Manage-Job-Data)\n3. [Job Status](/#tag/Job-Status)\n4. [Monitor Contributors](/#tag/Monitor-Contributors)\n5. [Manage Job Settings](/#tag/Manage-Job-Settings)\n6. [Job Results](/#tag/Job-Results)\n7. [Account Info](/#tag/Account-Info)\n\n\nContact Support:\n Email: help@appen.com",
+      "type": "text/plain"
+    }
+  }
+}

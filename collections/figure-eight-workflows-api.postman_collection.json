@@ -1,0 +1,1924 @@
+{
+  "item": [
+    {
+      "id": "82248dee-a0ce-44c4-becc-7bf0e4a63847",
+      "name": "Workflows",
+      "description": {
+        "content": "Copy, launch, pause and resume workflows, check status and configuration values",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1449165-d0bf-430a-9f82-5ef7ad80a2b6",
+          "name": "Create a new workflow.",
+          "request": {
+            "name": "Create a new workflow.",
+            "description": {
+              "content": "Create a Workflow for processing data via jobs in the core platform or models via the Model Gateway Services.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"user_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "620ffc0f-ac46-4420-b9f6-3ff055ed6c6c",
+              "name": "The response of a new workflow",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Data Parser Workflow\",\n  \"description\": \"An optional description for this workflow\",\n  \"user_id\": \"00000000-0000-0000-0000-000000000001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1234,\n  \"name\": \"Data Parser Workflow\",\n  \"description\": \"A sample description for this workflow\",\n  \"status\": \"new\",\n  \"status_description\": \"string\",\n  \"team_id\": \"00000000-0000-0000-0000-000000000002\",\n  \"orderer_rows\": 0,\n  \"created_at\": \"1980-07-21T09:59:46.247Z\",\n  \"updated_at\": \"1961-10-21T19:33:41.989Z\",\n  \"workflow_id\": 1234,\n  \"url\": \"https://api-beta.appen.com/v2/workflows/1234\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe4e7852-f8f5-4113-9336-980f61ab197d",
+              "name": "invalid input, object invalid due to missing team_id, user_id or name.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Data Parser Workflow\",\n  \"description\": \"An optional description for this workflow\",\n  \"user_id\": \"00000000-0000-0000-0000-000000000001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ab51e41-3bd6-4995-b9b3-4b73dd87890d",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Data Parser Workflow\",\n  \"description\": \"An optional description for this workflow\",\n  \"user_id\": \"00000000-0000-0000-0000-000000000001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"must be present\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "163439d6-aba7-49f3-b974-872c7fa9a7a1",
+          "name": "Launch a Workflow.",
+          "request": {
+            "name": "Launch a Workflow.",
+            "description": {
+              "content": "Launches the Workflow to contributors, models to predict and/or scripts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "launch"
+              ],
+              "host": [
+                "{{workflows-workflow_id-launch-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "rows",
+                  "value": "<integer>",
+                  "description": "(Required) The number of rows to launch through the specified workflow"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f86a86a-eb7d-43bf-8231-0c72f44e4e1f",
+              "name": "Accepted, i.e. row launch action was triggered and workflow data ingestion is being kicked off.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "launch"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-launch-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rows",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Three step image categorization and rating 001\",\n  \"team_id\": \"4ff9bd89-4cc4-4324-a533-d8466d6596fe\",\n  \"user_id\": \"ec006e04-86d6-40d6-aaed-5d717a1be778\",\n  \"id\": 79,\n  \"workflow_id\": 9122,\n  \"description\": \"Route cat images routed by categories (inferred by a model) to people to for rating cuteness.\",\n  \"status\": \"paused\",\n  \"status_description\": \"Paused by admin\",\n  \"created_at\": \"1952-05-14T15:26:35.746Z\",\n  \"updated_at\": \"1981-02-03T20:32:54.827Z\",\n  \"steps\": [\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1957-05-13T16:45:54.181Z\",\n      \"updated_at\": \"1987-03-22T08:55:14.429Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2019-05-30T04:10:11.560Z\",\n          \"updated_at\": \"2011-11-18T17:54:29.037Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1970-01-28T01:07:06.884Z\",\n          \"updated_at\": \"1963-07-16T02:00:29.083Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1973-05-22T20:05:35.634Z\",\n      \"updated_at\": \"1970-04-01T18:58:10.016Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1975-07-01T03:37:57.562Z\",\n          \"updated_at\": \"2002-05-02T20:14:19.751Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1979-09-21T17:50:09.774Z\",\n          \"updated_at\": \"2025-02-16T05:01:01.775Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "996b5810-80e3-4f86-80ba-5b58377886c3",
+              "name": "Bad Request. You failed to pass one or more required parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "launch"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-launch-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rows",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The request was invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2e0d61a-ac37-4e56-8c31-f77deb0d23ad",
+              "name": "Not Found. The resource you are referencing does not exist, or you don''t own it.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "launch"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-launch-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rows",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfc59f75-e816-46d7-b24c-6f9ce1eafcd6",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "launch"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-launch-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rows",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"Workflow has only 1000 rows to order\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dc07d21-2f04-4c2a-ba52-8e7a04aafb9d",
+          "name": "Pause a Workflow.",
+          "request": {
+            "name": "Pause a Workflow.",
+            "description": {
+              "content": "Pauses a Running state Workflow only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "pause"
+              ],
+              "host": [
+                "{{workflows-workflow_id-pause-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f1614c0-1941-4ab9-88c6-2382b7efcdb6",
+              "name": "Accepted, i.e. action was triggered via AASM event or other method.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-pause-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Three step image categorization and rating 001\",\n  \"team_id\": \"4ff9bd89-4cc4-4324-a533-d8466d6596fe\",\n  \"user_id\": \"ec006e04-86d6-40d6-aaed-5d717a1be778\",\n  \"id\": 79,\n  \"workflow_id\": 6600,\n  \"description\": \"Route cat images routed by categories (inferred by a model) to people to for rating cuteness.\",\n  \"status\": \"paused\",\n  \"status_description\": \"Paused by admin\",\n  \"created_at\": \"2002-06-26T11:26:39.714Z\",\n  \"updated_at\": \"1953-10-29T22:30:02.332Z\",\n  \"steps\": [\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1949-01-29T21:01:08.092Z\",\n      \"updated_at\": \"1995-09-17T14:09:49.427Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2012-03-30T07:23:13.508Z\",\n          \"updated_at\": \"1952-11-24T01:09:48.079Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1964-02-10T15:38:14.567Z\",\n          \"updated_at\": \"2002-09-13T20:09:58.902Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1987-06-12T11:04:06.150Z\",\n      \"updated_at\": \"2020-03-26T18:12:47.231Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1955-05-17T08:13:24.806Z\",\n          \"updated_at\": \"2015-08-27T02:57:24.500Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2026-07-18T19:30:43.195Z\",\n          \"updated_at\": \"2010-05-15T10:33:46.340Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ec1ee88-4fe4-4f2d-acbb-438c729818df",
+              "name": "Not Found. The resource you are referencing does not exist, or you don''t own it.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-pause-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4334e7bd-9b33-4dfa-b894-68ed82adf8f2",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-pause-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"Error while configuring action 'pause' for step 1234. Make sure the job 1234567 exists and you own it.\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0af4da5e-6fc9-423e-ab81-3c99de34c30b",
+          "name": "Resume a paused Workflow.",
+          "request": {
+            "name": "Resume a paused Workflow.",
+            "description": {
+              "content": "Resumes a Paused state Workflow only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "resume"
+              ],
+              "host": [
+                "{{workflows-workflow_id-resume-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "895c824f-6340-44bf-a76e-3eb0692851b1",
+              "name": "Accepted, i.e. action was triggered via AASM event or other method.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-resume-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Three step image categorization and rating 001\",\n  \"team_id\": \"4ff9bd89-4cc4-4324-a533-d8466d6596fe\",\n  \"user_id\": \"ec006e04-86d6-40d6-aaed-5d717a1be778\",\n  \"id\": 79,\n  \"workflow_id\": 6600,\n  \"description\": \"Route cat images routed by categories (inferred by a model) to people to for rating cuteness.\",\n  \"status\": \"paused\",\n  \"status_description\": \"Paused by admin\",\n  \"created_at\": \"2002-06-26T11:26:39.714Z\",\n  \"updated_at\": \"1953-10-29T22:30:02.332Z\",\n  \"steps\": [\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1949-01-29T21:01:08.092Z\",\n      \"updated_at\": \"1995-09-17T14:09:49.427Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2012-03-30T07:23:13.508Z\",\n          \"updated_at\": \"1952-11-24T01:09:48.079Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1964-02-10T15:38:14.567Z\",\n          \"updated_at\": \"2002-09-13T20:09:58.902Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1987-06-12T11:04:06.150Z\",\n      \"updated_at\": \"2020-03-26T18:12:47.231Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1955-05-17T08:13:24.806Z\",\n          \"updated_at\": \"2015-08-27T02:57:24.500Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2026-07-18T19:30:43.195Z\",\n          \"updated_at\": \"2010-05-15T10:33:46.340Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98e79383-c3f1-4aba-821b-ec0b8f8ea68b",
+              "name": "Not Found. The resource you are referencing does not exist, or you don''t own it.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-resume-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ab827f7-4bad-4c02-9c15-b930ada15bc8",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-resume-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"The workflow is already running\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "316b37e2-d6b4-4c76-8214-22a26c0cfc38",
+          "name": "Copy an existing Workflow.",
+          "request": {
+            "name": "Copy an existing Workflow.",
+            "description": {
+              "content": "Copy a new, paused or finished Workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "copy"
+              ],
+              "host": [
+                "{{workflows-workflow_id-copy-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4dc1da2-f4d8-44f0-a5fa-8fc22c96e935",
+              "name": "Copy service was able to copy workflow configuration successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-copy-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new workflow\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Three step image categorization and rating 001\",\n  \"team_id\": \"4ff9bd89-4cc4-4324-a533-d8466d6596fe\",\n  \"user_id\": \"ec006e04-86d6-40d6-aaed-5d717a1be778\",\n  \"id\": 79,\n  \"workflow_id\": 6600,\n  \"description\": \"Route cat images routed by categories (inferred by a model) to people to for rating cuteness.\",\n  \"status\": \"paused\",\n  \"status_description\": \"Paused by admin\",\n  \"created_at\": \"2002-06-26T11:26:39.714Z\",\n  \"updated_at\": \"1953-10-29T22:30:02.332Z\",\n  \"steps\": [\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1949-01-29T21:01:08.092Z\",\n      \"updated_at\": \"1995-09-17T14:09:49.427Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2012-03-30T07:23:13.508Z\",\n          \"updated_at\": \"1952-11-24T01:09:48.079Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1964-02-10T15:38:14.567Z\",\n          \"updated_at\": \"2002-09-13T20:09:58.902Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1987-06-12T11:04:06.150Z\",\n      \"updated_at\": \"2020-03-26T18:12:47.231Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1955-05-17T08:13:24.806Z\",\n          \"updated_at\": \"2015-08-27T02:57:24.500Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2026-07-18T19:30:43.195Z\",\n          \"updated_at\": \"2010-05-15T10:33:46.340Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db16ae5e-7dc7-42f9-acb0-717f51ae3792",
+              "name": "Access Denied. You do not have permission to access the resource you are referencing.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-copy-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new workflow\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26773c71-b8f8-4339-9285-28f65525b072",
+              "name": "Not Found. The resource you are referencing does not exist, or you don''t own it.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-copy-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new workflow\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cdef8e7b-f165-482f-8ab6-5ce3c757e4ab",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-copy-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new workflow\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"Workflow cannot be copied\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c29e9b6c-5f56-4cf6-8d95-2b2e9cdc9c4e",
+          "name": "Poll the current state and metadata for a workflow",
+          "request": {
+            "name": "Poll the current state and metadata for a workflow",
+            "description": {},
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "poll"
+              ],
+              "host": [
+                "{{workflows-workflow_id-poll-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9aa884c0-b8fc-4ba0-ac1a-abcfc5f4fe67",
+              "name": "Workflow JSON",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "poll"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-poll-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Three step image categorization and rating 001\",\n  \"team_id\": \"4ff9bd89-4cc4-4324-a533-d8466d6596fe\",\n  \"user_id\": \"ec006e04-86d6-40d6-aaed-5d717a1be778\",\n  \"id\": 79,\n  \"description\": \"Route cat images routed by categories (inferred by a model) to people to for rating cuteness.\",\n  \"status\": \"running\",\n  \"status_description\": \"string\",\n  \"created_at\": \"2020-04-22T22:45:03.830Z\",\n  \"updated_at\": \"2021-05-18T18:57:55.729Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c46292a-c67e-4afc-85a6-3fbbbbd93d41",
+              "name": "Access Denied. You do not have permission to access the resource you are referencing.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "poll"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-poll-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b87aa08a-9bf5-4ccc-898e-135d8ea5e1c3",
+              "name": "Not Found. The resource you are referencing does not exist, or you don''t own it.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "poll"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-poll-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4403042-720e-47e0-ac7e-04ed6b9fbb09",
+          "name": "Get current workflow config",
+          "request": {
+            "name": "Get current workflow config",
+            "description": {},
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{workflows-workflow_id-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67c68a6a-871b-4c91-8bc0-fc6b766d84d8",
+              "name": "Workflow JSON",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Three step image categorization and rating 001\",\n  \"team_id\": \"4ff9bd89-4cc4-4324-a533-d8466d6596fe\",\n  \"user_id\": \"ec006e04-86d6-40d6-aaed-5d717a1be778\",\n  \"id\": 79,\n  \"workflow_id\": 6600,\n  \"description\": \"Route cat images routed by categories (inferred by a model) to people to for rating cuteness.\",\n  \"status\": \"paused\",\n  \"status_description\": \"Paused by admin\",\n  \"created_at\": \"2002-06-26T11:26:39.714Z\",\n  \"updated_at\": \"1953-10-29T22:30:02.332Z\",\n  \"steps\": [\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1949-01-29T21:01:08.092Z\",\n      \"updated_at\": \"1995-09-17T14:09:49.427Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2012-03-30T07:23:13.508Z\",\n          \"updated_at\": \"1952-11-24T01:09:48.079Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1964-02-10T15:38:14.567Z\",\n          \"updated_at\": \"2002-09-13T20:09:58.902Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"data_processor_type\": \"Builder::Job\",\n      \"data_processor_id\": \"1234567\",\n      \"id\": 79,\n      \"created_at\": \"1987-06-12T11:04:06.150Z\",\n      \"updated_at\": \"2020-03-26T18:12:47.231Z\",\n      \"step_options\": {},\n      \"routes\": [\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"1955-05-17T08:13:24.806Z\",\n          \"updated_at\": \"2015-08-27T02:57:24.500Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"workflow_step_id\": 79,\n          \"destination_step_id\": 80,\n          \"id\": 197,\n          \"created_at\": \"2026-07-18T19:30:43.195Z\",\n          \"updated_at\": \"2010-05-15T10:33:46.340Z\",\n          \"filter_rules\": [\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"comparison_field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison_operation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rule_connector\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5eb3e427-a49d-453e-a43e-9324aaa31393",
+              "name": "Access Denied. You do not have permission to access the resource you are referencing.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f033068-4d7f-45f9-b6c2-b07bde6689ba",
+              "name": "Not Found. The resource you are referencing does not exist, or you don''t own it.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16238d7a-08f6-4ff2-a9e9-1f5912a6b7cf",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75552418-f06a-43b1-bbb0-2705715af24a",
+          "name": "Partially update a Workflow.",
+          "request": {
+            "name": "Partially update a Workflow.",
+            "description": {
+              "content": "Update specific attributes of a given workflow, such as name or description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{workflows-workflow_id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"user_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "65cc603c-f621-412d-8112-d14da2be1a27",
+              "name": "The response of a new workflow",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Data Parser Workflow\",\n  \"description\": \"An optional description for this workflow\",\n  \"user_id\": \"00000000-0000-0000-0000-000000000001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1234,\n  \"name\": \"Data Parser Workflow\",\n  \"description\": \"A sample description for this workflow\",\n  \"status\": \"new\",\n  \"status_description\": \"string\",\n  \"team_id\": \"00000000-0000-0000-0000-000000000002\",\n  \"orderer_rows\": 0,\n  \"created_at\": \"1962-08-24T20:36:03.525Z\",\n  \"updated_at\": \"1970-03-26T11:29:45.263Z\",\n  \"workflow_id\": 1234,\n  \"url\": \"https://api-beta.appen.com/v2/workflows/1234\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1da96ba-d2b1-47e4-98df-c1d383802513",
+              "name": "invalid input, object invalid due to missing team_id, user_id or name.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Data Parser Workflow\",\n  \"description\": \"An optional description for this workflow\",\n  \"user_id\": \"00000000-0000-0000-0000-000000000001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea7e6c4d-d44a-4513-83b6-ba6aa161f471",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Data Parser Workflow\",\n  \"description\": \"An optional description for this workflow\",\n  \"user_id\": \"00000000-0000-0000-0000-000000000001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"must be present\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1887bc2a-b8b4-47cc-a3a2-f208013733be",
+          "name": "Deletes a workflow.",
+          "request": {
+            "name": "Deletes a workflow.",
+            "description": {
+              "content": "Workflow deletion works only before first launch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{workflows-workflow_id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b28293e-fee3-4f94-8b9c-9eefe4b61f33",
+              "name": "Workflow successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5f0f5422-8380-4259-879f-68dfd2cb9b2d",
+              "name": "Delete Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{workflows-workflow_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"Workflows cannot be deleted once they have been launched\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.appen.com/v1",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api-beta.appen.com/v2",
+      "key": "workflows-workflow_id-launch-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api-beta.appen.com/v2",
+      "key": "workflows-workflow_id-pause-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api-beta.appen.com/v2",
+      "key": "workflows-workflow_id-resume-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api-beta.appen.com/v2",
+      "key": "workflows-workflow_id-copy-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api-beta.appen.com/v2",
+      "key": "workflows-workflow_id-poll-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api-beta.appen.com/v2",
+      "key": "workflows-workflow_id-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "b4f0312f-9f53-44d4-af48-0c9d8a19d859",
+    "name": "Appen Platform Account Info Workflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nHello, and welcome to Appen, the leading data annotation platform for Machine Learning. Our API enables developers to build applications that can programmatically create, edit, and launch Appen jobs, download results, and more! \n\nAppen uses a RESTful API that accepts data requests as URL-encoded key-value pairs. Responses are returned in JSON and authentication is key-based.\n\nBefore integrating with the API, we highly recommend you first build and run a job using our [graphical user interface](https://client.appen.com/sessions/new). Once you have run a job successfully and are satisfied with the results, you can automate the process using the Appen API.\n\n# Authentication\nYou will need to supply your Appen API key to access the API. To find your API key:\n1. Click the Account button located in the bottom corner of the Global Navigation bar on the left side of any page.\n![Appen Authentication](/assets/img/authentication1.png \"Appen Authentication\")\n2. Click the API tab and find your key listed under the Your API Key section. \n![Appen API](/assets/img/authentication2.png \"Appen API key\")\n\nFor requests listed below, the API Key will be listed as `{api_key}`. \n\nThe API key needs to be included in the header for every request: \n```\n  headers: { \n\n   \"AUTHORIZATION\" => \"Token token={api_key}\" \n\n  } \n```\n\nYou may also see other variables, such as `{job_id}` for operations pertaining to a specific job, or `{team_id}` when completing operations relevant to an entire team (like listing all available jobs). Job ID's can be determined from the job listing page or the URL. A team id is visible in the URL of the Teams tab in the Account page. \n# Resources\nThere are three primary data objects on Appen that correspond to resources on the API:\n## Jobs\nA **Job** is an interface that connects your data to an online workforce.\n  Each job on the Appen platform has data, instructions, customizable questions for your use case\n  (written in **CML** [](https://success.appen.com/hc/en-us/articles/202817989-CML-Custom-Markup-Language-Overview)),\n  [test questions](https://success.appen.com/hc/en-us/articles/202702985-How-to-Create-Test-Questions),\n  and is worked on by *Contributors*. Contributors submit *Judgments* on the rows of data via a worker interface. \n    * All jobs in a single account can be found [on your jobs page](https://client.appen.com/jobs) and will be\n    identified by a unique numeric id.\n## Units (also known as 'Rows')\nA **Unit** of data is uploaded to the job from your source data file via API or GUI. \n## Judgments \nA **Judgment** is the set of responses submitted by a contributor on a particular unit of data. It is\n  recommended to collect multiple judgments and compare them to one another or aggregate to the top response. For\n  each job, you can specify the number of judgments you would like each row to receive.\n# Responses and Messaging\nEach request to the Appen API returns an HTTP status code response and one or both of the following:\n* An application response message (in JSON) \n* A JSON representation of the object (job, unit, or judgments) requested\nSee the below sections of different API Requests, Responses and Messaging for more information:\n1. [Job Create/Update](/#tag/Job-CreateUpdate)\n2. [Manage Job Data](/#tag/Manage-Job-Data)\n3. [Job Status](/#tag/Job-Status)\n4. [Monitor Contributors](/#tag/Monitor-Contributors)\n5. [Manage Job Settings](/#tag/Manage-Job-Settings)\n6. [Job Results](/#tag/Job-Results)\n7. [Account Info](/#tag/Account-Info)\n\n\nContact Support:\n Email: help@appen.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Workflow Data Upload/Download API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Data Upload/Download",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload data for the workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/upload",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Archive the file to the cloud, verify the structure is compatible with the workflow input step, and make the rows available to launch. Available file formats: CSV, TSV, JSON, JSONL, XLS, XLSX, ODS."
+        },
+        {
+          "info": {
+            "name": "Download Full or Source data workflow report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/report/download",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Report type. can be 'full' or 'source'"
+              }
+            ]
+          },
+          "docs": "Generated workflow in Zip archive if report link is present and report file exists. Full report is in CSV format and contains data from each Workflow Step. Source report contains original uploaded files in Zip archive."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

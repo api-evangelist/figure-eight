@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Workflow Steps API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Steps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Collection of Workflow Steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/steps",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              }
+            ]
+          },
+          "docs": "Collection of Workflow Steps"
+        },
+        {
+          "info": {
+            "name": "Create Workflow Steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/steps",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new **WorkflowStep** to allow routing data between various data processors. Note only job_id, mlapi_id or script_id must be provided."
+        },
+        {
+          "info": {
+            "name": "Update a Workflow Step",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/steps/:step_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "step_id",
+                "value": "2345",
+                "type": "path",
+                "description": "Workflow Step database ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change the data processor info _(i.e. `job_id`)_ or `step_number` of an existing **WorkflowStep** to allow routing data between various data processors."
+        },
+        {
+          "info": {
+            "name": "Delete a workflow step",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/steps/:step_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "step_id",
+                "value": "2345",
+                "type": "path",
+                "description": "Workflow Step database ID"
+              }
+            ]
+          },
+          "docs": "Delete the **WorkflowStep** record from the **Workflow**"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

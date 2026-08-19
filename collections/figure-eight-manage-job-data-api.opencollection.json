@@ -1,0 +1,301 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Manage Job Data API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage Job Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload data to an existing job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id/upload.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "The  request fails when the fields in the data uploaded _do not\nmatch_ the fields already present in the job. To override this\nvalidation and force upload data, use the query parameter\n`force=true`.\n"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload data to an existing job. Data may be uploaded in JSON or CSV format."
+        },
+        {
+          "info": {
+            "name": "Paginated list of Units in Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/units.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A desired page of paginated results to return. \n"
+              }
+            ]
+          },
+          "docs": "Gets **Units** for the **Job** identified by the `job_id` parameter of\nthe request. Defaults to 1000 Units per page, in order to get the next\n1000 rows, you must increment the value of `page`. Keep doing so until\nan empty hash is returned.\n"
+        },
+        {
+          "info": {
+            "name": "Add Unit(s) to job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id/units.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "unit[data][{column1,2,3...x}]",
+                "value": "",
+                "type": "query",
+                "description": "Accepts multiple columns, and individual data strings per column"
+              },
+              {
+                "name": "unit[data][column1,2,...x_gold]",
+                "value": "",
+                "type": "query",
+                "description": "Accepts multiple columns, and individual data strings per column"
+              },
+              {
+                "name": "unit[data][_golden]",
+                "value": "",
+                "type": "query",
+                "description": "TBD"
+              }
+            ]
+          },
+          "docs": "Creates a new Row in an existing Job. This is the request format and endpoint to use for unit-by-unit posting. This endpoint cannot add multiple units in a single request.\n\n*Note:* test questions can also be uploaded using this endpoint. First, upload units that have a field `_golden=true`, then use the [Convert uploaded test questions](#tag/Manage-Job-Data/paths/~1jobs~1{job_id}~1gold.json/put) endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Change unit state.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id/units/:unit_id.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "unit_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+              },
+              {
+                "name": "unit[state]",
+                "value": "",
+                "type": "query",
+                "description": "Changes the state (e.g., new, golden, finalized, canceled,\nhidden_gold) of the Row specified in the request\n"
+              }
+            ]
+          },
+          "docs": "Update `state` for specific units on a job."
+        },
+        {
+          "info": {
+            "name": "Delete a unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.appen.com/v1/jobs/:job_id/units/:unit_id.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "unit_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+              }
+            ]
+          },
+          "docs": "Delete a unit if the job state and unit state are valid for deletion."
+        },
+        {
+          "info": {
+            "name": "Cancel a unit.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/jobs/:job_id/units/:unit_id/cancel.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "unit_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+              }
+            ]
+          },
+          "docs": "Will cancel a unit in state New or Judgable if the row has not collected any judgments yet.\n"
+        },
+        {
+          "info": {
+            "name": "Convert uploaded test questions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.appen.com/v1/jobs/:job_id/gold.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Corresponds to the \"Convert Uploaded Test Questions\" button on the Job's DATA page.\nAll units where `_golden` is set to `true` will be converted to test questions.\n"
+        },
+        {
+          "info": {
+            "name": "Get all test question units.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/test_questions",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Get all test question units."
+        },
+        {
+          "info": {
+            "name": "Get count of all rows in a job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs/:job_id/units/ping.json",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Get count of all rows in a job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

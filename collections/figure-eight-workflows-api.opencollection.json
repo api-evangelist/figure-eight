@@ -1,0 +1,235 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Workflows API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/workflows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Workflow for processing data via jobs in the core platform or models via the Model Gateway Services."
+        },
+        {
+          "info": {
+            "name": "Launch a Workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/launch",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "rows",
+                "value": "",
+                "type": "query",
+                "description": "The number of rows to launch through the specified workflow"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Launches the Workflow to contributors, models to predict and/or scripts."
+        },
+        {
+          "info": {
+            "name": "Pause a Workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/pause",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Pauses a Running state Workflow only."
+        },
+        {
+          "info": {
+            "name": "Resume a paused Workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/resume",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Resumes a Paused state Workflow only."
+        },
+        {
+          "info": {
+            "name": "Copy an existing Workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/copy",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy a new, paused or finished Workflow."
+        },
+        {
+          "info": {
+            "name": "Poll the current state and metadata for a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/poll",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Poll the current state and metadata for a workflow"
+        },
+        {
+          "info": {
+            "name": "Get current workflow config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Get current workflow config"
+        },
+        {
+          "info": {
+            "name": "Partially update a Workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update specific attributes of a given workflow, such as name or description."
+        },
+        {
+          "info": {
+            "name": "Deletes a workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              }
+            ]
+          },
+          "docs": "Workflow deletion works only before first launch."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,882 @@
+{
+  "item": [
+    {
+      "id": "aeb0c43f-bbc3-4721-b828-74c43b313974",
+      "name": "Workflow Step Routes",
+      "description": {
+        "content": "Manage Workflow Step Routes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f21bd96-8c60-474a-9291-891ea23299cc",
+          "name": "Create a new workflow route",
+          "request": {
+            "name": "Create a new workflow route",
+            "description": {
+              "content": "Create a configuration object for routing data coming out of the data processor in the step specified by `workflow_step_id` to the step specified by `destination_step_id`.\nThink of `workflow_step` and `destination_step` as _nodes_ in the Workflow's configuration 'graph' and this route as the _edge_ between them.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "steps",
+                ":step_id",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "step_id",
+                  "description": "(Required) Workflow Step database ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination_step_id\": \"<integer>\",\n  \"filter_rules_attributes\": [\n    {\n      \"comparison_field\": \"<string>\",\n      \"comparison_value\": \"<string>\",\n      \"comparison_operation\": \"<string>\",\n      \"rule_connector\": \"<string>\"\n    },\n    {\n      \"comparison_field\": \"<string>\",\n      \"comparison_value\": \"<string>\",\n      \"comparison_operation\": \"<string>\",\n      \"rule_connector\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b254056-d709-4981-9da7-234a8bc7fd28",
+              "name": "Route created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_step_id\": 19,\n  \"filter_rules_attributes\": [\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\"\n    },\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow_step_id\": 79,\n  \"destination_step_id\": 80,\n  \"id\": 197,\n  \"created_at\": \"1966-10-13T01:35:46.909Z\",\n  \"updated_at\": \"1957-01-17T00:36:09.405Z\",\n  \"filter_rules\": [\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"id\": 956,\n      \"created_at\": \"1957-09-22T09:21:57.575Z\",\n      \"updated_at\": \"1952-04-18T09:52:43.498Z\"\n    },\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"id\": 956,\n      \"created_at\": \"1975-12-06T10:47:14.038Z\",\n      \"updated_at\": \"2024-07-23T04:42:44.309Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de9de93c-02fa-4e64-8b64-c8d796853eb6",
+              "name": "Workflow or step specified by id params not found in the database or does not belong to the customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_step_id\": 19,\n  \"filter_rules_attributes\": [\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\"\n    },\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "557ff7eb-5734-418a-ac82-383ddc1ebcf4",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_step_id\": 19,\n  \"filter_rules_attributes\": [\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\"\n    },\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"destination_step_id\": \"must be present\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aea0b46-58f4-4ed2-a798-2f277de0541d",
+          "name": "View the list of routes associated with a Step.",
+          "request": {
+            "name": "View the list of routes associated with a Step.",
+            "description": {
+              "content": "List routes for a Workflow Step. \\\nNote that one workflow step can route to __multiple__ destination steps _(or the same step with different filter rules)_ by creating multiple StepRoutes ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "steps",
+                ":step_id",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "step_id",
+                  "description": "(Required) Workflow Step database ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b86a2b9-7e89-4a46-8f0e-73de62be7e26",
+              "name": "OK - List of Routes for moving data from step to step.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"workflow_step_id\": 79,\n    \"destination_step_id\": 80,\n    \"id\": 197,\n    \"created_at\": \"1946-08-29T12:44:56.421Z\",\n    \"updated_at\": \"1959-09-01T06:58:42.079Z\",\n    \"filter_rules\": [\n      {\n        \"comparison_field\": \"img_is_cat\",\n        \"comparison_value\": \"true\",\n        \"comparison_operation\": \"==\",\n        \"rule_connector\": \"and\",\n        \"id\": 956,\n        \"created_at\": \"1996-03-21T02:12:23.563Z\",\n        \"updated_at\": \"1968-03-22T06:43:33.966Z\"\n      },\n      {\n        \"comparison_field\": \"img_is_cat\",\n        \"comparison_value\": \"true\",\n        \"comparison_operation\": \"==\",\n        \"rule_connector\": \"and\",\n        \"id\": 956,\n        \"created_at\": \"2008-04-29T22:52:22.908Z\",\n        \"updated_at\": \"1963-02-16T09:26:53.281Z\"\n      }\n    ]\n  },\n  {\n    \"workflow_step_id\": 79,\n    \"destination_step_id\": 80,\n    \"id\": 197,\n    \"created_at\": \"1986-08-13T23:14:36.189Z\",\n    \"updated_at\": \"1995-11-24T09:25:41.567Z\",\n    \"filter_rules\": [\n      {\n        \"comparison_field\": \"img_is_cat\",\n        \"comparison_value\": \"true\",\n        \"comparison_operation\": \"==\",\n        \"rule_connector\": \"and\",\n        \"id\": 956,\n        \"created_at\": \"1989-11-26T22:03:26.521Z\",\n        \"updated_at\": \"1989-10-27T12:46:54.814Z\"\n      },\n      {\n        \"comparison_field\": \"img_is_cat\",\n        \"comparison_value\": \"true\",\n        \"comparison_operation\": \"==\",\n        \"rule_connector\": \"and\",\n        \"id\": 956,\n        \"created_at\": \"1983-08-22T06:18:05.387Z\",\n        \"updated_at\": \"1975-09-29T17:12:09.997Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08efe889-121e-4884-ad43-ab0bdfa4cdbf",
+              "name": "Workflow or step specified by id params not found in the database or does not belong to the customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6373174f-4e7b-49e1-a11f-a19e252c778f",
+          "name": "Change route destination and filter rules.",
+          "request": {
+            "name": "Change route destination and filter rules.",
+            "description": {
+              "content": "Update a step route by changing the destination step Think of `workflow_step` and `destination_step` as _nodes_ in the Workflow's configuration 'graph' and this route as the _edge_ between them.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "steps",
+                ":step_id",
+                "routes",
+                ":route_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "step_id",
+                  "description": "(Required) Workflow Step database ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "route_id",
+                  "description": "(Required) Step Route database ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination_step_id\": \"<integer>\",\n  \"filter_rules_attributes\": [\n    {\n      \"id\": \"<integer>\",\n      \"comparison_field\": \"<string>\",\n      \"comparison_value\": \"<string>\",\n      \"comparison_operation\": \"<string>\",\n      \"rule_connector\": \"<string>\",\n      \"_destroy\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"comparison_field\": \"<string>\",\n      \"comparison_value\": \"<string>\",\n      \"comparison_operation\": \"<string>\",\n      \"rule_connector\": \"<string>\",\n      \"_destroy\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "039ecce1-1851-460f-9ff8-ba339cc2945f",
+              "name": "Route updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes",
+                    ":route_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "route_id",
+                      "description": "(Required) Step Route database ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_step_id\": 19,\n  \"filter_rules_attributes\": [\n    {\n      \"id\": 956,\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"_destroy\": true\n    },\n    {\n      \"id\": 956,\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"_destroy\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow_step_id\": 79,\n  \"destination_step_id\": 80,\n  \"id\": 197,\n  \"created_at\": \"2017-08-22T22:51:00.862Z\",\n  \"updated_at\": \"1977-12-07T02:57:24.276Z\",\n  \"filter_rules\": [\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"id\": 956,\n      \"created_at\": \"1952-12-15T22:36:13.236Z\",\n      \"updated_at\": \"2001-12-03T10:44:31.770Z\"\n    },\n    {\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"id\": 956,\n      \"created_at\": \"1978-02-06T04:42:17.200Z\",\n      \"updated_at\": \"1996-08-03T02:40:46.656Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "870f7cf6-4c76-4898-8723-188315c70a49",
+              "name": "Workflow, step or route specified by id params not found in the database or does not belong to the customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes",
+                    ":route_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "route_id",
+                      "description": "(Required) Step Route database ID"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_step_id\": 19,\n  \"filter_rules_attributes\": [\n    {\n      \"id\": 956,\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"_destroy\": true\n    },\n    {\n      \"id\": 956,\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"_destroy\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18d3e06b-5132-410f-9455-bea2c43fe3f6",
+              "name": "Unprocessable Entity. A request parameter was malformed or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes",
+                    ":route_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "route_id",
+                      "description": "(Required) Step Route database ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_step_id\": 19,\n  \"filter_rules_attributes\": [\n    {\n      \"id\": 956,\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"_destroy\": true\n    },\n    {\n      \"id\": 956,\n      \"comparison_field\": \"img_is_cat\",\n      \"comparison_value\": \"true\",\n      \"comparison_operation\": \"==\",\n      \"rule_connector\": \"and\",\n      \"_destroy\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"destination_step_id\": \"must be present\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "632eb21b-b4e5-48de-aca4-225267d70de8",
+          "name": "Delete a route associated with a Step.",
+          "request": {
+            "name": "Delete a route associated with a Step.",
+            "description": {
+              "content": "Delete the **StepRoute** record that joins two **Steps** and holds the rules for routing the data between steps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "steps",
+                ":step_id",
+                "routes",
+                ":route_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "workflow_id",
+                  "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "step_id",
+                  "description": "(Required) Workflow Step database ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "route_id",
+                  "description": "(Required) Step Route database ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1492c8e5-e679-46fa-907d-0be3b665445d",
+              "name": "Route and its filter rules deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes",
+                    ":route_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "route_id",
+                      "description": "(Required) Step Route database ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f5c37b81-fe74-4de2-83da-db50b97c231b",
+              "name": "Workflow, step or route specified by id params not found in the database or does not belong to the customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "steps",
+                    ":step_id",
+                    "routes",
+                    ":route_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "workflow_id",
+                      "description": "(Required) The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) Workflow Step database ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "route_id",
+                      "description": "(Required) Step Route database ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.appen.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a60a0f90-29a7-421c-90ce-165b56d2b96d",
+    "name": "Appen Platform Account Info Workflow Step Routes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nHello, and welcome to Appen, the leading data annotation platform for Machine Learning. Our API enables developers to build applications that can programmatically create, edit, and launch Appen jobs, download results, and more! \n\nAppen uses a RESTful API that accepts data requests as URL-encoded key-value pairs. Responses are returned in JSON and authentication is key-based.\n\nBefore integrating with the API, we highly recommend you first build and run a job using our [graphical user interface](https://client.appen.com/sessions/new). Once you have run a job successfully and are satisfied with the results, you can automate the process using the Appen API.\n\n# Authentication\nYou will need to supply your Appen API key to access the API. To find your API key:\n1. Click the Account button located in the bottom corner of the Global Navigation bar on the left side of any page.\n![Appen Authentication](/assets/img/authentication1.png \"Appen Authentication\")\n2. Click the API tab and find your key listed under the Your API Key section. \n![Appen API](/assets/img/authentication2.png \"Appen API key\")\n\nFor requests listed below, the API Key will be listed as `{api_key}`. \n\nThe API key needs to be included in the header for every request: \n```\n  headers: { \n\n   \"AUTHORIZATION\" => \"Token token={api_key}\" \n\n  } \n```\n\nYou may also see other variables, such as `{job_id}` for operations pertaining to a specific job, or `{team_id}` when completing operations relevant to an entire team (like listing all available jobs). Job ID's can be determined from the job listing page or the URL. A team id is visible in the URL of the Teams tab in the Account page. \n# Resources\nThere are three primary data objects on Appen that correspond to resources on the API:\n## Jobs\nA **Job** is an interface that connects your data to an online workforce.\n  Each job on the Appen platform has data, instructions, customizable questions for your use case\n  (written in **CML** [](https://success.appen.com/hc/en-us/articles/202817989-CML-Custom-Markup-Language-Overview)),\n  [test questions](https://success.appen.com/hc/en-us/articles/202702985-How-to-Create-Test-Questions),\n  and is worked on by *Contributors*. Contributors submit *Judgments* on the rows of data via a worker interface. \n    * All jobs in a single account can be found [on your jobs page](https://client.appen.com/jobs) and will be\n    identified by a unique numeric id.\n## Units (also known as 'Rows')\nA **Unit** of data is uploaded to the job from your source data file via API or GUI. \n## Judgments \nA **Judgment** is the set of responses submitted by a contributor on a particular unit of data. It is\n  recommended to collect multiple judgments and compare them to one another or aggregate to the top response. For\n  each job, you can specify the number of judgments you would like each row to receive.\n# Responses and Messaging\nEach request to the Appen API returns an HTTP status code response and one or both of the following:\n* An application response message (in JSON) \n* A JSON representation of the object (job, unit, or judgments) requested\nSee the below sections of different API Requests, Responses and Messaging for more information:\n1. [Job Create/Update](/#tag/Job-CreateUpdate)\n2. [Manage Job Data](/#tag/Manage-Job-Data)\n3. [Job Status](/#tag/Job-Status)\n4. [Monitor Contributors](/#tag/Monitor-Contributors)\n5. [Manage Job Settings](/#tag/Manage-Job-Settings)\n6. [Job Results](/#tag/Job-Results)\n7. [Account Info](/#tag/Account-Info)\n\n\nContact Support:\n Email: help@appen.com",
+      "type": "text/plain"
+    }
+  }
+}

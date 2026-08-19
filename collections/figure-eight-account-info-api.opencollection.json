@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paginated list all Jobs available to Account (by user or team id).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/jobs.json",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              },
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "query",
+                "description": "A unique identifier for your team. Often used to scope query results and available jobs, models, or scripts. Variable name: `{team_id}`. \n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A desired page of paginated results to return. \n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Can be unordered, running, canceled, finished, or paused"
+              },
+              {
+                "name": "created_at_greater_equal",
+                "value": "",
+                "type": "query",
+                "description": "Accepts dates in any of the following formats: 2020/03/15, 2020-03-15, 15-03-2020, 03/15/2020"
+              },
+              {
+                "name": "created_at_less_equal",
+                "value": "",
+                "type": "query",
+                "description": "Accepts dates in any of the following formats: 2020/03/15, 2020-03-15, 15-03-2020, 03/15/2020"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Specify the name of a tag. Accepts multiple tags, separate tags with  commas i.e. tag1, tag2, tag3, ..., tagn"
+              }
+            ]
+          },
+          "docs": "Queries for all Jobs under the Account related to the API key in the\nrequest.\n"
+        },
+        {
+          "info": {
+            "name": "Get account information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/account",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+              }
+            ]
+          },
+          "docs": "Retrieves the Appen account information related to the key value\nin the request.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

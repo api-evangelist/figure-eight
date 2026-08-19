@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Appen Platform Account Info Workflow Step Routes API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Step Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "View the list of routes associated with a Step.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/steps/:step_id/routes",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "step_id",
+                "value": "2345",
+                "type": "path",
+                "description": "Workflow Step database ID"
+              }
+            ]
+          },
+          "docs": "List routes for a Workflow Step. \\\nNote that one workflow step can route to __multiple__ destination steps _(or the same step with different filter rules)_ by creating multiple StepRoutes "
+        },
+        {
+          "info": {
+            "name": "Create a new workflow route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/steps/:step_id/routes",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "step_id",
+                "value": "2345",
+                "type": "path",
+                "description": "Workflow Step database ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a configuration object for routing data coming out of the data processor in the step specified by `workflow_step_id` to the step specified by `destination_step_id`.\nThink of `workflow_step` and `destination_step` as _nodes_ in the Workflow's configuration 'graph' and this route as the _edge_ between them."
+        },
+        {
+          "info": {
+            "name": "Change route destination and filter rules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/steps/:step_id/routes/:route_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "step_id",
+                "value": "2345",
+                "type": "path",
+                "description": "Workflow Step database ID"
+              },
+              {
+                "name": "route_id",
+                "value": "3456",
+                "type": "path",
+                "description": "Step Route database ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a step route by changing the destination step Think of `workflow_step` and `destination_step` as _nodes_ in the Workflow's configuration 'graph' and this route as the _edge_ between them."
+        },
+        {
+          "info": {
+            "name": "Delete a route associated with a Step.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.appen.com/v1/workflows/:workflow_id/steps/:step_id/routes/:route_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "123",
+                "type": "path",
+                "description": "The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**."
+              },
+              {
+                "name": "step_id",
+                "value": "2345",
+                "type": "path",
+                "description": "Workflow Step database ID"
+              },
+              {
+                "name": "route_id",
+                "value": "3456",
+                "type": "path",
+                "description": "Step Route database ID"
+              }
+            ]
+          },
+          "docs": "Delete the **StepRoute** record that joins two **Steps** and holds the rules for routing the data between steps."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
