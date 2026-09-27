@@ -54,7 +54,7 @@ modified: '2026-07-19'
 tags:
 - Company
 - Artificial Intelligence
-- Machine-Learning
+- Machine Learning
 - Data Labeling
 - Data Annotation
 - Training Data
@@ -71,6 +71,7 @@ tags_raw:
 - Human-in-the-Loop
 - Crowdsourcing
 - Acquired
+- Machine-Learning
 apis:
 - aid: figure-eight:figure-eight-account-info-api
   name: Figure Eight Account Info API

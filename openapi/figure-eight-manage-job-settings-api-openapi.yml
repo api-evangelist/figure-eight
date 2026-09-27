@@ -447,20 +447,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    channel_id:
-      in: query
-      name: channel_id
-      description: "A unique identifier for a group of contributors. Variable name: `{channel_id}`. \n"
-      required: true
-      schema:
-        type: string
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
-      schema:
-        type: string
     job_id:
       in: path
       name: job_id
@@ -468,33 +454,21 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/new_job_id'
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
+    channel_id:
+      in: query
+      name: channel_id
+      description: "A unique identifier for a group of contributors. Variable name: `{channel_id}`. \n"
+      required: true
+      schema:
+        type: string
   schemas:
-    channels:
-      properties:
-        available_channels:
-          type: array
-          items:
-            type: string
-          example:
-          - channelOne
-          - channelTwo
-        enabled_channels:
-          type: array
-          items:
-            type: string
-          example:
-          - channelOne
-        message:
-          type: string
-          example: Individual channel targeting will be deprecated soon. Please see the Appen API documentation for more info.
-    new_job_id:
-      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
-      type: integer
-      format: int64
-      readOnly: true
-      minimum: 1
-      maximum: 9223372036854776000
-      example: 1234567
     new_job:
       title: new_job
       properties:
@@ -823,3 +797,29 @@ components:
           type: boolean
           default: false
           readOnly: true
+    channels:
+      properties:
+        available_channels:
+          type: array
+          items:
+            type: string
+          example:
+          - channelOne
+          - channelTwo
+        enabled_channels:
+          type: array
+          items:
+            type: string
+          example:
+          - channelOne
+        message:
+          type: string
+          example: Individual channel targeting will be deprecated soon. Please see the Appen API documentation for more info.
+    new_job_id:
+      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
+      type: integer
+      format: int64
+      readOnly: true
+      minimum: 1
+      maximum: 9223372036854776000
+      example: 1234567

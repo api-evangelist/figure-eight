@@ -142,32 +142,89 @@ paths:
       operationId: deleteWorkflowsByWorkflowIdStepsByStepIdRoutesByRouteId
       x-operation-id-source: derived
 components:
-  parameters:
-    workflow_id_param:
-      in: path
-      name: workflow_id
-      required: true
-      schema:
-        type: integer
-      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
-      example: 123
-    route_id_path:
-      name: route_id
-      in: path
-      required: true
-      description: Step Route database ID
-      schema:
-        type: integer
-      example: 3456
-    workflow_step_id_param:
-      in: path
-      name: step_id
-      required: true
-      description: Workflow Step database ID
-      schema:
-        type: integer
-      example: 2345
   schemas:
+    FilterRulePatch:
+      type: object
+      required:
+      - id
+      - comparison_field
+      - comparison_value
+      - comparison_operation
+      - rule_connector
+      properties:
+        id:
+          type: integer
+          example: 956
+        comparison_field:
+          type: string
+          example: img_is_cat
+        comparison_operation:
+          type: string
+          enum:
+          - ==
+          - <
+          - '>'
+          - '!='
+          - =~
+          - <=
+          - '>='
+          example: ==
+        comparison_value:
+          type: string
+          example: 'true'
+        rule_connector:
+          type: string
+          enum:
+          - all
+          - and
+          - or
+          - rnd
+          - csp
+          - els
+          example: and
+        _destroy:
+          type: boolean
+          example: true
+          description: Indicates that this filter rule should be deleted
+    FilterRuleNew:
+      type: object
+      required:
+      - comparison_field
+      - comparison_value
+      - comparison_operation
+      - rule_connector
+      properties:
+        id:
+          type: integer
+          example: 956
+          readOnly: true
+        comparison_field:
+          type: string
+          example: img_is_cat
+        comparison_operation:
+          type: string
+          enum:
+          - ==
+          - <
+          - '>'
+          - '!='
+          - =~
+          - <=
+          - '>='
+          example: ==
+        comparison_value:
+          type: string
+          example: 'true'
+        rule_connector:
+          type: string
+          enum:
+          - all
+          - and
+          - or
+          - rnd
+          - csp
+          - els
+          example: and
     FilterRule:
       type: object
       required:
@@ -215,88 +272,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    FilterRuleNew:
-      type: object
-      required:
-      - comparison_field
-      - comparison_value
-      - comparison_operation
-      - rule_connector
-      properties:
-        id:
-          type: integer
-          example: 956
-          readOnly: true
-        comparison_field:
-          type: string
-          example: img_is_cat
-        comparison_operation:
-          type: string
-          enum:
-          - ==
-          - <
-          - '>'
-          - '!='
-          - =~
-          - <=
-          - '>='
-          example: ==
-        comparison_value:
-          type: string
-          example: 'true'
-        rule_connector:
-          type: string
-          enum:
-          - all
-          - and
-          - or
-          - rnd
-          - csp
-          - els
-          example: and
-    FilterRulePatch:
-      type: object
-      required:
-      - id
-      - comparison_field
-      - comparison_value
-      - comparison_operation
-      - rule_connector
-      properties:
-        id:
-          type: integer
-          example: 956
-        comparison_field:
-          type: string
-          example: img_is_cat
-        comparison_operation:
-          type: string
-          enum:
-          - ==
-          - <
-          - '>'
-          - '!='
-          - =~
-          - <=
-          - '>='
-          example: ==
-        comparison_value:
-          type: string
-          example: 'true'
-        rule_connector:
-          type: string
-          enum:
-          - all
-          - and
-          - or
-          - rnd
-          - csp
-          - els
-          example: and
-        _destroy:
-          type: boolean
-          example: true
-          description: Indicates that this filter rule should be deleted
     StepRoute:
       type: object
       required:
@@ -325,3 +300,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FilterRule'
+  parameters:
+    workflow_id_param:
+      in: path
+      name: workflow_id
+      required: true
+      schema:
+        type: integer
+      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
+      example: 123
+    route_id_path:
+      name: route_id
+      in: path
+      required: true
+      description: Step Route database ID
+      schema:
+        type: integer
+      example: 3456
+    workflow_step_id_param:
+      in: path
+      name: step_id
+      required: true
+      description: Workflow Step database ID
+      schema:
+        type: integer
+      example: 2345

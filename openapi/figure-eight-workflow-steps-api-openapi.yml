@@ -126,39 +126,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WorkflowStep:
-      type: object
-      required:
-      - workflow_id
-      - data_processor_type
-      - data_processor_id
-      properties:
-        id:
-          type: integer
-          example: 79
-          readOnly: true
-        data_processor_id:
-          type: string
-          example: '1234567'
-        data_processor_type:
-          type: string
-          readOnly: true
-          example: Builder::Job
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        step_options:
-          type: object
-          example: {}
-        routes:
-          type: array
-          items:
-            $ref: '#/components/schemas/StepRoute'
     WorkflowStepNew:
       type: object
       properties:
@@ -236,6 +203,39 @@ components:
           type: string
           format: date-time
           readOnly: true
+    WorkflowStep:
+      type: object
+      required:
+      - workflow_id
+      - data_processor_type
+      - data_processor_id
+      properties:
+        id:
+          type: integer
+          example: 79
+          readOnly: true
+        data_processor_id:
+          type: string
+          example: '1234567'
+        data_processor_type:
+          type: string
+          readOnly: true
+          example: Builder::Job
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        step_options:
+          type: object
+          example: {}
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRoute'
     StepRoute:
       type: object
       required:

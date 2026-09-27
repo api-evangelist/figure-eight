@@ -163,6 +163,21 @@ paths:
       operationId: putJobsByJobIdOntologyCsv
       x-operation-id-source: derived
 components:
+  parameters:
+    job_id:
+      in: path
+      name: job_id
+      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+      required: true
+      schema:
+        $ref: '#/components/schemas/new_job_id'
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
   schemas:
     new_job_id:
       description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
@@ -187,18 +202,3 @@ components:
             type: string
         required:
         - class_name
-  parameters:
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
-      schema:
-        type: string
-    job_id:
-      in: path
-      name: job_id
-      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
-      required: true
-      schema:
-        $ref: '#/components/schemas/new_job_id'

@@ -129,6 +129,13 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
     workflow_id_param:
       in: path
       name: workflow_id
@@ -137,13 +144,6 @@ components:
         type: integer
       description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
       example: 123
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
-      schema:
-        type: string
   responses:
     '404':
       description: 'Not Found. The resource you are referencing does not exist, or you don''''t own it.

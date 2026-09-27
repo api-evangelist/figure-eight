@@ -188,6 +188,50 @@ paths:
       operationId: getJobsByJobIdJudgmentsJson
       x-operation-id-source: derived
 components:
+  parameters:
+    job_id:
+      in: path
+      name: job_id
+      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+      required: true
+      schema:
+        $ref: '#/components/schemas/new_job_id'
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
+    unit_id:
+      name: unit_id
+      in: path
+      required: true
+      description: "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+      schema:
+        type: integer
+        format: int32
+    type:
+      name: type
+      in: query
+      required: true
+      description: 'Specifies the type of report to generate or download, valid values include:
+
+        - **full** - Returns the Full report containing every judgment.
+
+        - **aggregated** - Returns the Aggregated report containing the aggregated response for each row.
+
+        - **json** - Returns the JSON report containing the aggregated response, as well as the individual judgments.
+
+        - **gold_report** - Returns the Test Question report.
+
+        - **workset** - Returns the Contributor report.
+
+        - **source** - Returns a CSV of the source data uploaded to the job.
+
+        '
+      schema:
+        type: string
   schemas:
     unit:
       properties:
@@ -247,47 +291,3 @@ components:
       minimum: 1
       maximum: 9223372036854776000
       example: 1234567
-  parameters:
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
-      schema:
-        type: string
-    type:
-      name: type
-      in: query
-      required: true
-      description: 'Specifies the type of report to generate or download, valid values include:
-
-        - **full** - Returns the Full report containing every judgment.
-
-        - **aggregated** - Returns the Aggregated report containing the aggregated response for each row.
-
-        - **json** - Returns the JSON report containing the aggregated response, as well as the individual judgments.
-
-        - **gold_report** - Returns the Test Question report.
-
-        - **workset** - Returns the Contributor report.
-
-        - **source** - Returns a CSV of the source data uploaded to the job.
-
-        '
-      schema:
-        type: string
-    unit_id:
-      name: unit_id
-      in: path
-      required: true
-      description: "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
-      schema:
-        type: integer
-        format: int32
-    job_id:
-      in: path
-      name: job_id
-      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
-      required: true
-      schema:
-        $ref: '#/components/schemas/new_job_id'

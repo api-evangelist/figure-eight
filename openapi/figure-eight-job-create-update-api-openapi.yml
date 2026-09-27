@@ -161,43 +161,22 @@ paths:
       operationId: getJobsByJobIdCopyJson
       x-operation-id-source: derived
 components:
+  parameters:
+    job_id:
+      in: path
+      name: job_id
+      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+      required: true
+      schema:
+        $ref: '#/components/schemas/new_job_id'
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
   schemas:
-    job_copy_id:
-      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
-      type: integer
-      format: int64
-      readOnly: true
-      minimum: 1
-      maximum: 9223372036854776000
-      example: 1234568
-    data_upload_job:
-      allOf:
-      - $ref: '#/components/schemas/new_job'
-      - type: object
-        properties:
-          title:
-            example: null
-          instructions:
-            example: ''
-          cml:
-            example: null
-    copied_job:
-      allOf:
-      - $ref: '#/components/schemas/new_job'
-      - type: object
-        properties:
-          id:
-            $ref: '#/components/schemas/job_copy_id'
-          copied_from:
-            $ref: '#/components/schemas/new_job_id'
-    new_job_id:
-      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
-      type: integer
-      format: int64
-      readOnly: true
-      minimum: 1
-      maximum: 9223372036854776000
-      example: 1234567
     new_job:
       title: new_job
       properties:
@@ -526,6 +505,42 @@ components:
           type: boolean
           default: false
           readOnly: true
+    data_upload_job:
+      allOf:
+      - $ref: '#/components/schemas/new_job'
+      - type: object
+        properties:
+          title:
+            example: null
+          instructions:
+            example: ''
+          cml:
+            example: null
+    copied_job:
+      allOf:
+      - $ref: '#/components/schemas/new_job'
+      - type: object
+        properties:
+          id:
+            $ref: '#/components/schemas/job_copy_id'
+          copied_from:
+            $ref: '#/components/schemas/new_job_id'
+    new_job_id:
+      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
+      type: integer
+      format: int64
+      readOnly: true
+      minimum: 1
+      maximum: 9223372036854776000
+      example: 1234567
+    job_copy_id:
+      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
+      type: integer
+      format: int64
+      readOnly: true
+      minimum: 1
+      maximum: 9223372036854776000
+      example: 1234568
   responses:
     422_unit_limit:
       description: 'Unit Limit Reached. You have uploaded the maximum amount of units (250,000) allowed in a
@@ -533,18 +548,3 @@ components:
         job.
 
         '
-  parameters:
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
-      schema:
-        type: string
-    job_id:
-      in: path
-      name: job_id
-      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
-      required: true
-      schema:
-        $ref: '#/components/schemas/new_job_id'

@@ -117,23 +117,6 @@ paths:
       operationId: deleteStepRoutesByRouteIdFilterRulesByRuleId
       x-operation-id-source: derived
 components:
-  parameters:
-    rule_id_path:
-      name: rule_id
-      in: path
-      required: true
-      description: Filter Rule database ID
-      schema:
-        type: integer
-      example: 4567
-    route_id_path:
-      name: route_id
-      in: path
-      required: true
-      description: Step Route database ID
-      schema:
-        type: integer
-      example: 3456
   requestBodies:
     FilterRule:
       content:
@@ -180,6 +163,23 @@ components:
                     - csp
                     - els
                     example: and
+  parameters:
+    rule_id_path:
+      name: rule_id
+      in: path
+      required: true
+      description: Filter Rule database ID
+      schema:
+        type: integer
+      example: 4567
+    route_id_path:
+      name: route_id
+      in: path
+      required: true
+      description: Step Route database ID
+      schema:
+        type: integer
+      example: 3456
   schemas:
     FilterRule:
       type: object
