@@ -255,6 +255,13 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
     job_id:
       in: path
       name: job_id
@@ -267,13 +274,6 @@ components:
       name: channel_id
       description: "A unique identifier for a group of contributors. Variable name: `{channel_id}`. \n"
       required: true
-      schema:
-        type: string
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
       schema:
         type: string
   schemas:

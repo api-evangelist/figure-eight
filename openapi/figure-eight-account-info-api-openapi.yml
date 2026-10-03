@@ -457,6 +457,14 @@ components:
           type: boolean
           default: false
           readOnly: true
+    new_job_id:
+      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
+      type: integer
+      format: int64
+      readOnly: true
+      minimum: 1
+      maximum: 9223372036854776000
+      example: 1234567
     account:
       properties:
         id:
@@ -512,14 +520,6 @@ components:
           type: string
           format: uuid
           readOnly: true
-    new_job_id:
-      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
-      type: integer
-      format: int64
-      readOnly: true
-      minimum: 1
-      maximum: 9223372036854776000
-      example: 1234567
   parameters:
     page:
       in: query
@@ -528,18 +528,18 @@ components:
       required: false
       schema:
         type: integer
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
-      schema:
-        type: string
     team_id:
       name: team_id
       in: query
       required: false
       description: "A unique identifier for your team. Often used to scope query results and available jobs, models, or scripts. Variable name: `{team_id}`. \n"
+      schema:
+        type: string
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
       schema:
         type: string
   responses:

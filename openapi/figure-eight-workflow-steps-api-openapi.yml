@@ -125,9 +125,45 @@ paths:
       operationId: deleteWorkflowsByWorkflowIdStepsByStepId
       x-operation-id-source: derived
 components:
+  parameters:
+    workflow_step_id_param:
+      in: path
+      name: step_id
+      required: true
+      description: Workflow Step database ID
+      schema:
+        type: integer
+      example: 2345
+    workflow_id_param:
+      in: path
+      name: workflow_id
+      required: true
+      schema:
+        type: integer
+      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
+      example: 123
+  responses:
+    WorkflowStepsResponse:
+      description: The response of a workflow steps
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WorkflowStep'
+    WorkflowStepResponse:
+      description: The response of a workflow step
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WorkflowStep'
   schemas:
-    WorkflowStepNew:
+    WorkflowStep:
       type: object
+      required:
+      - workflow_id
+      - data_processor_type
+      - data_processor_id
       properties:
         id:
           type: integer
@@ -155,7 +191,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StepRoute'
-          example: []
     FilterRule:
       type: object
       required:
@@ -203,39 +238,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    WorkflowStep:
-      type: object
-      required:
-      - workflow_id
-      - data_processor_type
-      - data_processor_id
-      properties:
-        id:
-          type: integer
-          example: 79
-          readOnly: true
-        data_processor_id:
-          type: string
-          example: '1234567'
-        data_processor_type:
-          type: string
-          readOnly: true
-          example: Builder::Job
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        step_options:
-          type: object
-          example: {}
-        routes:
-          type: array
-          items:
-            $ref: '#/components/schemas/StepRoute'
     StepRoute:
       type: object
       required:
@@ -264,35 +266,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FilterRule'
-  responses:
-    WorkflowStepsResponse:
-      description: The response of a workflow steps
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/WorkflowStep'
-    WorkflowStepResponse:
-      description: The response of a workflow step
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WorkflowStep'
-  parameters:
-    workflow_id_param:
-      in: path
-      name: workflow_id
-      required: true
-      schema:
-        type: integer
-      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
-      example: 123
-    workflow_step_id_param:
-      in: path
-      name: step_id
-      required: true
-      description: Workflow Step database ID
-      schema:
-        type: integer
-      example: 2345
+    WorkflowStepNew:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 79
+          readOnly: true
+        data_processor_id:
+          type: string
+          example: '1234567'
+        data_processor_type:
+          type: string
+          readOnly: true
+          example: Builder::Job
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        step_options:
+          type: object
+          example: {}
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRoute'
+          example: []

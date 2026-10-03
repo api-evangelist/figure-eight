@@ -360,9 +360,227 @@ paths:
       operationId: deleteWorkflowsByWorkflowId
       x-operation-id-source: derived
 components:
+  schemas:
+    Workflow:
+      type: object
+      required:
+      - name
+      - team_id
+      - user_id
+      properties:
+        id:
+          type: integer
+          example: 79
+        workflow_id:
+          type: integer
+          format: string
+          deprecated: true
+        team_id:
+          type: string
+          format: uuid
+          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
+        user_id:
+          type: string
+          format: uuid
+          example: ec006e04-86d6-40d6-aaed-5d717a1be778
+        name:
+          type: string
+          example: Three step image categorization and rating 001
+        description:
+          type: string
+          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
+        status:
+          type: string
+          example: paused
+        status_description:
+          type: string
+          example: Paused by admin
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStep'
+    WorkflowCompact:
+      type: object
+      required:
+      - name
+      - team_id
+      - user_id
+      properties:
+        id:
+          type: integer
+          example: 79
+        team_id:
+          type: string
+          format: uuid
+          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
+        user_id:
+          type: string
+          format: uuid
+          example: ec006e04-86d6-40d6-aaed-5d717a1be778
+        name:
+          type: string
+          example: Three step image categorization and rating 001
+        description:
+          type: string
+          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
+        status:
+          type: string
+          example: running
+        status_description:
+          type: string
+          example: null
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    WorkflowStep:
+      type: object
+      required:
+      - workflow_id
+      - data_processor_type
+      - data_processor_id
+      properties:
+        id:
+          type: integer
+          example: 79
+          readOnly: true
+        data_processor_id:
+          type: string
+          example: '1234567'
+        data_processor_type:
+          type: string
+          readOnly: true
+          example: Builder::Job
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        step_options:
+          type: object
+          example: {}
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRoute'
+    FilterRule:
+      type: object
+      required:
+      - comparison_field
+      - comparison_value
+      - comparison_operation
+      - rule_connector
+      properties:
+        id:
+          type: integer
+          example: 956
+          readOnly: true
+        comparison_field:
+          type: string
+          example: img_is_cat
+        comparison_operation:
+          type: string
+          enum:
+          - ==
+          - <
+          - '>'
+          - '!='
+          - =~
+          - <=
+          - '>='
+          example: ==
+        comparison_value:
+          type: string
+          example: 'true'
+        rule_connector:
+          type: string
+          enum:
+          - all
+          - and
+          - or
+          - rnd
+          - csp
+          - els
+          example: and
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    StepRoute:
+      type: object
+      required:
+      - workflow_step_id
+      - destination_step_id
+      properties:
+        id:
+          type: integer
+          example: 197
+          readOnly: true
+        workflow_step_id:
+          type: integer
+          example: 79
+        destination_step_id:
+          type: integer
+          example: 80
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        filter_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterRule'
+  parameters:
+    workflow_id_param:
+      in: path
+      name: workflow_id
+      required: true
+      schema:
+        type: integer
+      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
+      example: 123
+    launch_rows_query:
+      in: query
+      name: rows
+      required: true
+      schema:
+        type: integer
+      description: The number of rows to launch through the specified workflow
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
   responses:
     '403':
       description: 'Access Denied. You do not have permission to access the resource you are referencing.
+
+        '
+    '422':
+      description: 'Unprocessable Entity. A request parameter was malformed or missing.
 
         '
     NewWorkflowResponse:
@@ -419,221 +637,3 @@ components:
       description: 'Not Found. The resource you are referencing does not exist, or you don''''t own it.
 
         '
-    '422':
-      description: 'Unprocessable Entity. A request parameter was malformed or missing.
-
-        '
-  parameters:
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
-      schema:
-        type: string
-    launch_rows_query:
-      in: query
-      name: rows
-      required: true
-      schema:
-        type: integer
-      description: The number of rows to launch through the specified workflow
-    workflow_id_param:
-      in: path
-      name: workflow_id
-      required: true
-      schema:
-        type: integer
-      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
-      example: 123
-  schemas:
-    Workflow:
-      type: object
-      required:
-      - name
-      - team_id
-      - user_id
-      properties:
-        id:
-          type: integer
-          example: 79
-        workflow_id:
-          type: integer
-          format: string
-          deprecated: true
-        team_id:
-          type: string
-          format: uuid
-          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
-        user_id:
-          type: string
-          format: uuid
-          example: ec006e04-86d6-40d6-aaed-5d717a1be778
-        name:
-          type: string
-          example: Three step image categorization and rating 001
-        description:
-          type: string
-          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
-        status:
-          type: string
-          example: paused
-        status_description:
-          type: string
-          example: Paused by admin
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowStep'
-    FilterRule:
-      type: object
-      required:
-      - comparison_field
-      - comparison_value
-      - comparison_operation
-      - rule_connector
-      properties:
-        id:
-          type: integer
-          example: 956
-          readOnly: true
-        comparison_field:
-          type: string
-          example: img_is_cat
-        comparison_operation:
-          type: string
-          enum:
-          - ==
-          - <
-          - '>'
-          - '!='
-          - =~
-          - <=
-          - '>='
-          example: ==
-        comparison_value:
-          type: string
-          example: 'true'
-        rule_connector:
-          type: string
-          enum:
-          - all
-          - and
-          - or
-          - rnd
-          - csp
-          - els
-          example: and
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-    WorkflowStep:
-      type: object
-      required:
-      - workflow_id
-      - data_processor_type
-      - data_processor_id
-      properties:
-        id:
-          type: integer
-          example: 79
-          readOnly: true
-        data_processor_id:
-          type: string
-          example: '1234567'
-        data_processor_type:
-          type: string
-          readOnly: true
-          example: Builder::Job
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        step_options:
-          type: object
-          example: {}
-        routes:
-          type: array
-          items:
-            $ref: '#/components/schemas/StepRoute'
-    WorkflowCompact:
-      type: object
-      required:
-      - name
-      - team_id
-      - user_id
-      properties:
-        id:
-          type: integer
-          example: 79
-        team_id:
-          type: string
-          format: uuid
-          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
-        user_id:
-          type: string
-          format: uuid
-          example: ec006e04-86d6-40d6-aaed-5d717a1be778
-        name:
-          type: string
-          example: Three step image categorization and rating 001
-        description:
-          type: string
-          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
-        status:
-          type: string
-          example: running
-        status_description:
-          type: string
-          example: null
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    StepRoute:
-      type: object
-      required:
-      - workflow_step_id
-      - destination_step_id
-      properties:
-        id:
-          type: integer
-          example: 197
-          readOnly: true
-        workflow_step_id:
-          type: integer
-          example: 79
-        destination_step_id:
-          type: integer
-          example: 80
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        filter_rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterRule'
