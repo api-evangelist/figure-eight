@@ -454,13 +454,6 @@ components:
       required: true
       schema:
         type: string
-    job_id:
-      in: path
-      name: job_id
-      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
-      required: true
-      schema:
-        $ref: '#/components/schemas/new_job_id'
     api_key:
       name: key
       in: query
@@ -468,7 +461,22 @@ components:
       description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
       schema:
         type: string
+    job_id:
+      in: path
+      name: job_id
+      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+      required: true
+      schema:
+        $ref: '#/components/schemas/new_job_id'
   schemas:
+    new_job_id:
+      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
+      type: integer
+      format: int64
+      readOnly: true
+      minimum: 1
+      maximum: 9223372036854776000
+      example: 1234567
     channels:
       properties:
         available_channels:
@@ -815,11 +823,3 @@ components:
           type: boolean
           default: false
           readOnly: true
-    new_job_id:
-      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
-      type: integer
-      format: int64
-      readOnly: true
-      minimum: 1
-      maximum: 9223372036854776000
-      example: 1234567

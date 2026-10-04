@@ -142,31 +142,6 @@ paths:
       operationId: deleteWorkflowsByWorkflowIdStepsByStepIdRoutesByRouteId
       x-operation-id-source: derived
 components:
-  parameters:
-    workflow_step_id_param:
-      in: path
-      name: step_id
-      required: true
-      description: Workflow Step database ID
-      schema:
-        type: integer
-      example: 2345
-    route_id_path:
-      name: route_id
-      in: path
-      required: true
-      description: Step Route database ID
-      schema:
-        type: integer
-      example: 3456
-    workflow_id_param:
-      in: path
-      name: workflow_id
-      required: true
-      schema:
-        type: integer
-      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
-      example: 123
   schemas:
     FilterRuleNew:
       type: object
@@ -254,34 +229,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    StepRoute:
-      type: object
-      required:
-      - workflow_step_id
-      - destination_step_id
-      properties:
-        id:
-          type: integer
-          example: 197
-          readOnly: true
-        workflow_step_id:
-          type: integer
-          example: 79
-        destination_step_id:
-          type: integer
-          example: 80
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        filter_rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterRule'
     FilterRulePatch:
       type: object
       required:
@@ -325,3 +272,56 @@ components:
           type: boolean
           example: true
           description: Indicates that this filter rule should be deleted
+    StepRoute:
+      type: object
+      required:
+      - workflow_step_id
+      - destination_step_id
+      properties:
+        id:
+          type: integer
+          example: 197
+          readOnly: true
+        workflow_step_id:
+          type: integer
+          example: 79
+        destination_step_id:
+          type: integer
+          example: 80
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        filter_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterRule'
+  parameters:
+    workflow_id_param:
+      in: path
+      name: workflow_id
+      required: true
+      schema:
+        type: integer
+      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
+      example: 123
+    route_id_path:
+      name: route_id
+      in: path
+      required: true
+      description: Step Route database ID
+      schema:
+        type: integer
+      example: 3456
+    workflow_step_id_param:
+      in: path
+      name: step_id
+      required: true
+      description: Workflow Step database ID
+      schema:
+        type: integer
+      example: 2345

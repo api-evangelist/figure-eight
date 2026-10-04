@@ -125,38 +125,6 @@ paths:
       operationId: deleteWorkflowsByWorkflowIdStepsByStepId
       x-operation-id-source: derived
 components:
-  parameters:
-    workflow_step_id_param:
-      in: path
-      name: step_id
-      required: true
-      description: Workflow Step database ID
-      schema:
-        type: integer
-      example: 2345
-    workflow_id_param:
-      in: path
-      name: workflow_id
-      required: true
-      schema:
-        type: integer
-      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
-      example: 123
-  responses:
-    WorkflowStepsResponse:
-      description: The response of a workflow steps
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/WorkflowStep'
-    WorkflowStepResponse:
-      description: The response of a workflow step
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WorkflowStep'
   schemas:
     WorkflowStep:
       type: object
@@ -238,34 +206,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    StepRoute:
-      type: object
-      required:
-      - workflow_step_id
-      - destination_step_id
-      properties:
-        id:
-          type: integer
-          example: 197
-          readOnly: true
-        workflow_step_id:
-          type: integer
-          example: 79
-        destination_step_id:
-          type: integer
-          example: 80
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        filter_rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterRule'
     WorkflowStepNew:
       type: object
       properties:
@@ -296,3 +236,63 @@ components:
           items:
             $ref: '#/components/schemas/StepRoute'
           example: []
+    StepRoute:
+      type: object
+      required:
+      - workflow_step_id
+      - destination_step_id
+      properties:
+        id:
+          type: integer
+          example: 197
+          readOnly: true
+        workflow_step_id:
+          type: integer
+          example: 79
+        destination_step_id:
+          type: integer
+          example: 80
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        filter_rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterRule'
+  responses:
+    WorkflowStepsResponse:
+      description: The response of a workflow steps
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/WorkflowStep'
+    WorkflowStepResponse:
+      description: The response of a workflow step
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WorkflowStep'
+  parameters:
+    workflow_id_param:
+      in: path
+      name: workflow_id
+      required: true
+      schema:
+        type: integer
+      description: The `id` of a **Workflow** belonging to the **Requestor** or accessible to the **Admin**.
+      example: 123
+    workflow_step_id_param:
+      in: path
+      name: step_id
+      required: true
+      description: Workflow Step database ID
+      schema:
+        type: integer
+      example: 2345

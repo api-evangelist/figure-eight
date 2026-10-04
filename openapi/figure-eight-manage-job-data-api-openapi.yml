@@ -364,7 +364,45 @@ paths:
       operationId: getJobsByJobIdUnitsPingJson
       x-operation-id-source: derived
 components:
+  parameters:
+    page:
+      in: query
+      name: page
+      description: "A desired page of paginated results to return. \n"
+      required: false
+      schema:
+        type: integer
+    unit_id:
+      name: unit_id
+      in: path
+      required: true
+      description: "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
+      schema:
+        type: integer
+        format: int32
+    api_key:
+      name: key
+      in: query
+      required: true
+      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
+      schema:
+        type: string
+    job_id:
+      in: path
+      name: job_id
+      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
+      required: true
+      schema:
+        $ref: '#/components/schemas/new_job_id'
   schemas:
+    new_job_id:
+      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
+      type: integer
+      format: int64
+      readOnly: true
+      minimum: 1
+      maximum: 9223372036854776000
+      example: 1234567
     unit:
       properties:
         id:
@@ -415,44 +453,6 @@ components:
           format: int32
           readOnly: true
           example: 425765
-    new_job_id:
-      description: Integer identifier of the requested resource (Job, Unit, Workflow) used in API request paths and response bodies.
-      type: integer
-      format: int64
-      readOnly: true
-      minimum: 1
-      maximum: 9223372036854776000
-      example: 1234567
-  parameters:
-    unit_id:
-      name: unit_id
-      in: path
-      required: true
-      description: "A unique identifier for a row of data that has been loaded into the system. Variable name: `{unit_id}`. \n"
-      schema:
-        type: integer
-        format: int32
-    job_id:
-      in: path
-      name: job_id
-      description: "A unique identifier for a job or task that is distributed to contributors. Variable name: `{job_id}`. \n"
-      required: true
-      schema:
-        $ref: '#/components/schemas/new_job_id'
-    page:
-      in: query
-      name: page
-      description: "A desired page of paginated results to return. \n"
-      required: false
-      schema:
-        type: integer
-    api_key:
-      name: key
-      in: query
-      required: true
-      description: "Your personal Appen API key; used to access the Appen platform. Can be found in your [account settings](https://client.appen.com/account/api). Variable name: `{api_key}`. \n"
-      schema:
-        type: string
   responses:
     '404':
       description: 'Not Found. The resource you are referencing does not exist, or you don''''t own it.

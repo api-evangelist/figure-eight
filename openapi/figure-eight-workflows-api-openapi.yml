@@ -361,88 +361,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Workflow:
-      type: object
-      required:
-      - name
-      - team_id
-      - user_id
-      properties:
-        id:
-          type: integer
-          example: 79
-        workflow_id:
-          type: integer
-          format: string
-          deprecated: true
-        team_id:
-          type: string
-          format: uuid
-          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
-        user_id:
-          type: string
-          format: uuid
-          example: ec006e04-86d6-40d6-aaed-5d717a1be778
-        name:
-          type: string
-          example: Three step image categorization and rating 001
-        description:
-          type: string
-          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
-        status:
-          type: string
-          example: paused
-        status_description:
-          type: string
-          example: Paused by admin
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkflowStep'
-    WorkflowCompact:
-      type: object
-      required:
-      - name
-      - team_id
-      - user_id
-      properties:
-        id:
-          type: integer
-          example: 79
-        team_id:
-          type: string
-          format: uuid
-          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
-        user_id:
-          type: string
-          format: uuid
-          example: ec006e04-86d6-40d6-aaed-5d717a1be778
-        name:
-          type: string
-          example: Three step image categorization and rating 001
-        description:
-          type: string
-          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
-        status:
-          type: string
-          example: running
-        status_description:
-          type: string
-          example: null
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
     WorkflowStep:
       type: object
       required:
@@ -523,6 +441,88 @@ components:
           type: string
           format: date-time
           readOnly: true
+    WorkflowCompact:
+      type: object
+      required:
+      - name
+      - team_id
+      - user_id
+      properties:
+        id:
+          type: integer
+          example: 79
+        team_id:
+          type: string
+          format: uuid
+          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
+        user_id:
+          type: string
+          format: uuid
+          example: ec006e04-86d6-40d6-aaed-5d717a1be778
+        name:
+          type: string
+          example: Three step image categorization and rating 001
+        description:
+          type: string
+          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
+        status:
+          type: string
+          example: running
+        status_description:
+          type: string
+          example: null
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Workflow:
+      type: object
+      required:
+      - name
+      - team_id
+      - user_id
+      properties:
+        id:
+          type: integer
+          example: 79
+        workflow_id:
+          type: integer
+          format: string
+          deprecated: true
+        team_id:
+          type: string
+          format: uuid
+          example: 4ff9bd89-4cc4-4324-a533-d8466d6596fe
+        user_id:
+          type: string
+          format: uuid
+          example: ec006e04-86d6-40d6-aaed-5d717a1be778
+        name:
+          type: string
+          example: Three step image categorization and rating 001
+        description:
+          type: string
+          example: Route cat images routed by categories (inferred by a model) to people to for rating cuteness.
+        status:
+          type: string
+          example: paused
+        status_description:
+          type: string
+          example: Paused by admin
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowStep'
     StepRoute:
       type: object
       required:
@@ -583,6 +583,10 @@ components:
       description: 'Unprocessable Entity. A request parameter was malformed or missing.
 
         '
+    '404':
+      description: 'Not Found. The resource you are referencing does not exist, or you don''''t own it.
+
+        '
     NewWorkflowResponse:
       description: The response of a new workflow
       content:
@@ -633,7 +637,3 @@ components:
               url:
                 type: string
                 example: https://api-beta.appen.com/v2/workflows/1234
-    '404':
-      description: 'Not Found. The resource you are referencing does not exist, or you don''''t own it.
-
-        '
