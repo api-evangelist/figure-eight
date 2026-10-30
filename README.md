@@ -64,6 +64,99 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Figure Eight is a company surfaced as a portfolio company of trinity-ventures and added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.
+> **Acquired or rebranded.** This company was acquired, merged or renamed. Its API, if it still exists, is offered under another name. This profile is kept as a historical record and is not maintained or rated.
 
-Backed by: trinity-ventures
+Figure Eight (formerly CrowdFlower, and originally Dolores Labs) was a human-in-the-loop machine learning and artificial intelligence company founded in San Francisco in 2007 by Lukas Biewald and Chris Van Pelt. Its platform turned unlabeled text, image, audio, and video into high-quality AI training data by combining automation with a distributed contributor workforce. The company exposed a RESTful, key-authenticated JSON API for programmatically creating, configuring, launching, and monitoring annotation jobs and multi-step workflows, and for downloading aggregated judgments and reports. Figure Eight was acquired by Appen in March 2019 for up to $300M; by 2020 its assets were fully integrated into Appen and the API is now served as the Appen Platform API at api.appen.com. This profile captures that surviving API surface. figure-eight.com now redirects to appen.com.
+
+**Areas:** Company · Artificial Intelligence · Machine Learning · Data Labeling · Data Annotation · Training Data · Human-in-the-Loop · Crowdsourcing · Acquired
+
+## Figure Eight on APIs.io (historical record)
+
+Everything profiled for Figure Eight is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/figure-eight/](https://apis.io/providers/figure-eight/)** — or go straight to one of the APIs or properties below.
+
+### APIs (13)
+
+- [Figure Eight Account Info API](https://apis.io/apis/figure-eight/figure-eight-account-info-api/) — Manage account info.
+- [Figure Eight Job Create/Update API](https://apis.io/apis/figure-eight/figure-eight-job-create-update-api/) — Create and update jobs.
+- [Figure Eight Job Ontology API](https://apis.io/apis/figure-eight/figure-eight-job-ontology-api/) — Read and Update the Ontology for a job
+- [Figure Eight Job Results API](https://apis.io/apis/figure-eight/figure-eight-job-results-api/) — Request rows, judgments, and reports.
+- [Figure Eight Job Status API](https://apis.io/apis/figure-eight/figure-eight-job-status-api/) — Control job status.
+- [Figure Eight Manage Job Data API](https://apis.io/apis/figure-eight/figure-eight-manage-job-data-api/) — Load data to jobs and work with that data.
+- [Figure Eight Manage Job Settings API](https://apis.io/apis/figure-eight/figure-eight-manage-job-settings-api/) — Manage various job settings.
+- [Figure Eight Monitor Contributors API](https://apis.io/apis/figure-eight/figure-eight-monitor-contributors-api/) — Monitor contributor status and settings.
+- [Figure Eight Workflow Data Upload/Download API](https://apis.io/apis/figure-eight/figure-eight-workflow-data-upload-download-api/) — Upload data to run through a Workflow. Download reports.
+- [Figure Eight Workflow Filter Rules API](https://apis.io/apis/figure-eight/figure-eight-workflow-filter-rules-api/) — Rules for routing data
+- [Figure Eight Workflow Step Routes API](https://apis.io/apis/figure-eight/figure-eight-workflow-step-routes-api/) — Manage Workflow Step Routes
+- [Figure Eight Workflow Steps API](https://apis.io/apis/figure-eight/figure-eight-workflow-steps-api/) — Manage Workflow Steps
+- [Figure Eight Workflows API](https://apis.io/apis/figure-eight/figure-eight-workflows-api/) — Copy, launch, pause and resume workflows, check status and configuration values
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Figure Eight Webhooks](https://apis.io/asyncapis/figure-eight/figure-eight-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [figure-eight](https://apis.io/servers/figure-eight/figure-eight/)
+
+#### Collections (13)
+
+Postman and Open Collection request collections.
+
+- [Appen Platform Account Info API](https://apis.io/collections/figure-eight/open-figure-eight-account-info-api/)
+- [Appen Platform Account Info Job Create/Update API](https://apis.io/collections/figure-eight/open-figure-eight-job-create-update-api/)
+- [Appen Platform Account Info Job Ontology API](https://apis.io/collections/figure-eight/open-figure-eight-job-ontology-api/)
+- [Appen Platform Account Info Job Results API](https://apis.io/collections/figure-eight/open-figure-eight-job-results-api/)
+- [Appen Platform Account Info Job Status API](https://apis.io/collections/figure-eight/open-figure-eight-job-status-api/)
+- [Appen Platform Account Info Manage Job Data API](https://apis.io/collections/figure-eight/open-figure-eight-manage-job-data-api/)
+- [Appen Platform Account Info Manage Job Settings API](https://apis.io/collections/figure-eight/open-figure-eight-manage-job-settings-api/)
+- [Appen Platform Account Info Monitor Contributors API](https://apis.io/collections/figure-eight/open-figure-eight-monitor-contributors-api/)
+- [Appen Platform Account Info Workflow Data Upload/Download API](https://apis.io/collections/figure-eight/open-figure-eight-workflow-data-upload-download-api/)
+- [Appen Platform Account Info Workflow Filter Rules API](https://apis.io/collections/figure-eight/open-figure-eight-workflow-filter-rules-api/)
+- [Appen Platform Account Info Workflow Step Routes API](https://apis.io/collections/figure-eight/open-figure-eight-workflow-step-routes-api/)
+- [Appen Platform Account Info Workflow Steps API](https://apis.io/collections/figure-eight/open-figure-eight-workflow-steps-api/)
+- [Appen Platform Account Info Workflows API](https://apis.io/collections/figure-eight/open-figure-eight-workflows-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Figure Eight Openapi Overlay](https://apis.io/overlays/figure-eight/figure-eight-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Figure Eight Authentication](https://apis.io/security/figure-eight/figure-eight-authentication/)
+- [Figure Eight Domain Security](https://apis.io/security/figure-eight/figure-eight-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Documentation](http://crowdflower.github.io/CML/)
+- [API reference](https://app.swaggerhub.com/apis-docs/CrowdFlower/FigureEightAPI/1.0.0)
+- [GitHub](https://github.com/CrowdFlower)
+
+## API Evangelist rating
+
+**Not rated** — this company is recorded as acquired or rebranded, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Figure Eight: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/figure-eight/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
